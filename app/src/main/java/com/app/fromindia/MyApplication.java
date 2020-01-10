@@ -2,11 +2,10 @@ package com.app.fromindia;
 
 import android.app.Application;
 
-import com.app.fromindia.utils.TypefaceUtil;
 
 public class MyApplication extends Application {
-    //private AppModule mApiComponent;
-    //  private D2EComponent component;
+    // public static AppComponent mComponent;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -14,7 +13,9 @@ public class MyApplication extends Application {
         //  This FontsOverride comes from the example I posted above
 
         // TypefaceUtil.overrideFont(getApplicationContext(), "SERIF", "fonts/Roboto-Bold.ttf");
-
-
+/*
+        mComponent = DaggerAppComponent
+                .builder()
+                .build();*/
     }
 }

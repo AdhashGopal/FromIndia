@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-        <import type="android.view.View" />
-    </data>
-
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -14,19 +10,19 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingTop="@dimen/padding_20">
+            android:paddingTop="@dimen/padding_5dp">
 
             <RelativeLayout
                 android:id="@+id/login_reg_lay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/padding_10"
+                android:layout_margin="@dimen/padding_8"
                 android:layout_marginTop="@dimen/padding_10"
                 android:padding="@dimen/padding_8"
                 android:paddingTop="@dimen/padding_10">
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/login_txt"
+                    android:id="@+id/loginTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/padding_10"
@@ -39,7 +35,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="@dimen/padding_20"
-                    android:layout_toRightOf="@+id/login_txt"
+                    android:layout_toRightOf="@+id/loginTxt"
                     android:padding="@dimen/padding_10"
                     android:paddingLeft="@dimen/padding_15"
                     android:text="@string/register"
@@ -52,9 +48,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/login_reg_lay"
-                android:layout_margin="@dimen/padding_10"
+                android:layout_margin="@dimen/padding_5dp"
                 android:padding="@dimen/padding_5dp"
-                android:visibility="visible">
+                android:visibility="invisible">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -62,27 +58,37 @@
                     android:orientation="vertical">
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/emailEdtLay"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/email">
+                        android:hint="@string/email"
+                        android:padding="@dimen/padding_8"
+                        app:errorTextAppearance="@style/ErrorText">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/email_edt"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/pwdLay"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/password"
+                        android:padding="@dimen/padding_8"
+                        app:errorTextAppearance="@style/ErrorText"
                         app:passwordToggleEnabled="true">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/pwd_edt"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionDone"
+                            android:singleLine="true" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <androidx.appcompat.widget.AppCompatTextView
@@ -99,7 +105,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/btn_height_55"
                         android:layout_marginTop="@dimen/padding_15"
-                        android:background="@drawable/bg_login_green"
+                        android:background="@drawable/btn_selector"
                         android:padding="@dimen/padding_5dp"
                         android:paddingTop="@dimen/padding_15"
                         android:text="@string/login"
@@ -115,10 +121,11 @@
                 android:id="@+id/signup_lay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_above="@+id/bottomLay"
                 android:layout_below="@+id/login_reg_lay"
-                android:layout_margin="@dimen/padding_10"
+                android:layout_margin="@dimen/padding_5dp"
                 android:padding="@dimen/padding_8"
-                android:visibility="invisible">
+                android:visibility="visible">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -126,69 +133,97 @@
                     android:orientation="vertical">
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/firstNameLAY"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/first_name">
+                        android:hint="@string/first_name"
+                        android:padding="@dimen/padding_8"
+                        app:errorTextAppearance="@style/ErrorText">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/firstName_EDT"
-                            style="@style/MyHintStyle"
+                            android:id="@+id/firstNameEDT"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/lastNameLAY"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/last_name">
+                        android:hint="@string/last_name"
+                        android:padding="@dimen/padding_8"
+                        app:errorTextAppearance="@style/ErrorText">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/lastName_EDT"
+                            android:id="@+id/lastNameEDT"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionNext"
+
+                            android:singleLine="true" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/signUpEmailLAY"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/email">
+                        android:hint="@string/email"
+                        android:padding="@dimen/padding_8"
+                        app:errorTextAppearance="@style/ErrorText">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/signUp_email_EDT"
+                            android:id="@+id/signUpEmailEDT"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionNext"
+
+                            android:singleLine="true" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/signUpPwdLAY"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/password"
+                        android:padding="@dimen/padding_8"
+                        app:errorTextAppearance="@style/ErrorText"
                         app:passwordToggleEnabled="true">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/signUp_pwd_EDT"
+                            android:id="@+id/signUpPwdEDT"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/signUpConfirmPwdLAY"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/confirm_password">
+                        android:hint="@string/confirm_password"
+                        android:padding="@dimen/padding_8"
+                        app:errorTextAppearance="@style/ErrorText">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/signUp_confirm_pwd_EDT"
+                            android:id="@+id/signUpConfirmPwdEDT"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:imeOptions="actionDone"
+                            android:singleLine="true" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/signUp_btn"
+                        android:id="@+id/registerBtn"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/btn_height_55"
                         android:layout_marginTop="@dimen/padding_10"
-                        android:background="@drawable/bg_login_green"
+                        android:background="@drawable/btn_selector"
                         android:padding="@dimen/padding_10"
                         android:paddingTop="@dimen/padding_5dp"
                         android:text="@string/register"
@@ -199,42 +234,65 @@
 
             </RelativeLayout>
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/loginIM"
+                android:layout_width="@dimen/dimen_280"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/bottomLay"
+                android:layout_centerInParent="true"
+                android:src="@drawable/bg_login_im"></androidx.appcompat.widget.AppCompatImageView>
 
-            <LinearLayout
+            <FrameLayout
+                android:id="@+id/bottomLay"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="@dimen/padding_15"
-                android:orientation="vertical"
-                android:padding="@dimen/padding_15"
-                android:paddingBottom="@dimen/padding_10">
+                android:layout_alignParentBottom="true">
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:layout_width="wrap_content"
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_200"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/bg_login_slice"></androidx.appcompat.widget.AppCompatImageView>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:paddingTop="@dimen/padding_5dp"
-                    android:paddingRight="@dimen/padding_5dp"
-                    android:text="@string/already_have_acc"
-                    android:textColor="@color/light_coffee"></androidx.appcompat.widget.AppCompatTextView>
+                    android:layout_gravity="bottom"
+                    android:orientation="vertical"
+                    android:paddingBottom="@dimen/padding_20">
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:layout_width="@dimen/dimen_160"
-                    android:layout_height="@dimen/btn_height_55"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/padding_10"
-                    android:background="@drawable/bg_capsule_btn"
-                    android:padding="@dimen/padding_10"
-                    android:paddingTop="@dimen/padding_5dp"
-                    android:text="@string/login"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    android:textStyle="normal"></androidx.appcompat.widget.AppCompatButton>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-            </LinearLayout>
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/loginInfoTxt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:paddingTop="@dimen/padding_5dp"
+                            android:paddingRight="@dimen/padding_5dp"
+                            android:text="@string/already_have_acc"
+                            android:textColor="@color/white"></androidx.appcompat.widget.AppCompatTextView>
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/bottomLoginbtn"
+                            android:layout_width="@dimen/dimen_160"
+                            android:layout_height="@dimen/btn_height_55"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="@dimen/padding_10"
+                            android:background="@drawable/bg_capsule_btn"
+                            android:padding="@dimen/padding_10"
+                            android:paddingTop="@dimen/padding_5dp"
+                            android:text="@string/login"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"></androidx.appcompat.widget.AppCompatButton>
+                    </LinearLayout>
+                </RelativeLayout>
+            </FrameLayout>
+
 
         </RelativeLayout>
-
-
     </LinearLayout>
 </layout>
