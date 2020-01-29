@@ -133,25 +133,36 @@
                             android:textSize="@dimen/dimen_16sp"></androidx.appcompat.widget.AppCompatTextView>
 
                         <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/productDetailIM"
                             android:layout_width="@dimen/dimen_25"
                             android:layout_height="@dimen/dimen_25"
                             android:layout_alignParentRight="true"
                             android:layout_marginRight="@dimen/padding_5dp"
                             android:padding="@dimen/padding_5dp"
-                            android:src="@drawable/ic_arrow_up"
+                            android:src="@drawable/ic_arrow_down"
                             android:textColor="@color/black"
                             android:textSize="@dimen/dimen_16sp"></androidx.appcompat.widget.AppCompatImageView>
 
                     </RelativeLayout>
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <LinearLayout
+                        android:id="@+id/productDetailLAY"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/padding_10"
-                        android:paddingLeft="@dimen/padding_5dp"
-                        android:paddingTop="@dimen/padding_5dp"
-                        android:text="Bags made in India with vibrant, graphical and colorful prints"
-                        android:textSize="14sp"></androidx.appcompat.widget.AppCompatTextView>
+                        android:visibility="gone">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/productDetailTXT"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/padding_10"
+                            android:paddingLeft="@dimen/padding_5dp"
+                            android:paddingTop="@dimen/padding_5dp"
+                            android:text="Bags made in India with vibrant, graphical and colorful prints"
+                            android:textSize="14sp"></androidx.appcompat.widget.AppCompatTextView>
+
+                    </LinearLayout>
+
                 </LinearLayout>
 
                 <RelativeLayout

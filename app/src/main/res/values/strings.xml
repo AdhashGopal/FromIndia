@@ -35,5 +35,6 @@
     <string name="save">Save</string>
     <string name="title_add_new_address">Add new address</string>
     <string name="lbl_exit_alert">Are you sure to exit?</string>
+    <string name="edit_profile">Edit Profile</string>
 
 </resources>

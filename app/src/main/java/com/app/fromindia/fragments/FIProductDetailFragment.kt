@@ -1,29 +1,23 @@
 package com.app.fromindia.fragments
 
+import android.animation.Animator
+import android.animation.Animator.AnimatorListener
+import android.animation.ValueAnimator
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.LinearLayout
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.app.fromindia.R
 import com.app.fromindia.activity.FIHomePageActivity
-import com.app.fromindia.adapter.FIAutoScrollAdapter
-import com.app.fromindia.adapter.FICustomAdapter
-import com.app.fromindia.adapter.FIMyAccountAdapter
 import com.app.fromindia.adapter.FIProductListAdapter
-import com.app.fromindia.helper.CommonValues
-import com.app.fromindia.helper.CommonValues.*
-import com.app.fromindia.model.DynamicMenu
 import com.app.fromindia.model.MenuItem
 import com.asksira.loopingviewpager.LoopingViewPager
 import com.rd.PageIndicatorView
-import kotlinx.android.synthetic.main.activity_main2.*
+
 
 class FIProductDetailFragment : Fragment() {
 
@@ -36,6 +30,12 @@ class FIProductDetailFragment : Fragment() {
     private var mProductList: LoopingViewPager? = null
 
     private var mPageIndicator: PageIndicatorView? = null
+
+    private var mPRoductDetailIM: AppCompatImageView? = null
+
+    private var mProductDetailTxt: AppCompatTextView? = null
+
+    private var mProductDetailLAY: LinearLayout? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,6 +62,12 @@ class FIProductDetailFragment : Fragment() {
         mProductList = aView!!.findViewById(R.id.productScrollVP) as LoopingViewPager
 
         mPageIndicator = aView!!.findViewById(R.id.productPageIndicatorView) as PageIndicatorView
+
+        mPRoductDetailIM = aView!!.findViewById(R.id.productDetailIM) as AppCompatImageView
+
+        mProductDetailTxt = aView!!.findViewById(R.id.productDetailTXT) as AppCompatTextView
+
+        mProductDetailLAY = aView!!.findViewById(R.id.productDetailLAY) as LinearLayout
 
         toSetStaticValue()
 
@@ -124,6 +130,15 @@ class FIProductDetailFragment : Fragment() {
         mBackIM!!.setOnClickListener {
             mFragmentManager!!.backPress()
         }
+
+        mPRoductDetailIM!!.setOnClickListener {
+            if (mProductDetailLAY!!.visibility == View.VISIBLE) {
+                collapse(mProductDetailLAY)
+
+            } else {
+                expand(mProductDetailLAY!!)
+            }
+        }
     }
 
     override fun onResume() {
@@ -137,5 +152,45 @@ class FIProductDetailFragment : Fragment() {
         (activity as FIHomePageActivity).hideToolbarHead()
         (activity as FIHomePageActivity).showToolbarHead()
 
+    }
+
+
+    fun expand(view: View) {
+        mPRoductDetailIM!!.animate().rotation(180f).start();
+
+        view.visibility = View.VISIBLE
+        val widthSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        val heightSpec = View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED)
+        view.measure(widthSpec, heightSpec)
+        val mAnimator: ValueAnimator = this!!.slideAnimator(view, 0, view.measuredHeight)!!
+        mAnimator.start()
+    }
+
+    private fun slideAnimator(v: View, start: Int, end: Int): ValueAnimator? {
+        val animator = ValueAnimator.ofInt(start, end)
+        animator.addUpdateListener { valueAnimator ->
+            val value = valueAnimator.animatedValue as Int
+            val layoutParams = v.layoutParams
+            layoutParams.height = value
+            v.layoutParams = layoutParams
+        }
+        return animator
+    }
+
+    fun collapse(view: LinearLayout?) {
+        mPRoductDetailIM!!.animate().rotation(360f).start();
+
+        val finalHeight = view!!.height
+        val mAnimator = slideAnimator(view, finalHeight, 0)
+        mAnimator!!.addListener(object : AnimatorListener {
+            override fun onAnimationEnd(animator: Animator) {
+                view.visibility = View.GONE
+            }
+
+            override fun onAnimationStart(animation: Animator) {}
+            override fun onAnimationCancel(animation: Animator) {}
+            override fun onAnimationRepeat(animation: Animator) {}
+        })
+        mAnimator.start()
     }
 }
