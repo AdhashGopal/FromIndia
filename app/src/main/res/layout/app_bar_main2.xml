@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.FIHomePageActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/mainHeaderLAY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:id="@+id/normalHeaderLAY"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="?attr/actionBarSize"
+                        android:padding="@dimen/padding_5dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/burgerMenu"
+                            android:layout_width="@dimen/dimen_25"
+                            android:layout_height="@dimen/dimen_25"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_menu"
+                            android:tint="@color/white"></androidx.appcompat.widget.AppCompatImageView>
+
+                        <TextView
+                            android:id="@+id/toolbarTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center"
+                            android:layout_toRightOf="@+id/burgerMenu"
+                            android:paddingLeft="@dimen/padding_20"
+                            android:text="@string/app_name"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/header_txt_20sp"
+                            android:textStyle="normal" />
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/searchHeaderLAY"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/padding_5dp"
+                        android:visibility="gone">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/searchBurgerMenu"
+                                android:layout_width="25dp"
+                                android:layout_height="wrap_content"
+                                android:src="@drawable/ic_menu"></androidx.appcompat.widget.AppCompatImageView>
+
+                            <TextView
+                                android:id="@+id/searchToolbarTitle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_gravity="center"
+                                android:layout_toRightOf="@+id/searchBurgerMenu"
+                                android:paddingLeft="@dimen/padding_20"
+                                android:text="@string/app_name"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                android:textStyle="normal" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_margin="5dp">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/notificationIM"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_centerVertical="true"
+                                android:src="@drawable/ic_notification"></androidx.appcompat.widget.AppCompatImageView>
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/cartItemIM"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="@dimen/padding_10"
+                                android:layout_toRightOf="@+id/notificationIM"
+                                android:src="@drawable/ic_cart"></androidx.appcompat.widget.AppCompatImageView>
+
+                        </RelativeLayout>
+                    </RelativeLayout>
+
+                    <androidx.appcompat.widget.SearchView
+                        android:id="@+id/homeSearch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/searchHeaderLAY"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginBottom="@dimen/padding_10"
+                        android:background="@drawable/bg_search_cardview"
+                        android:focusableInTouchMode="true"
+                        android:theme="@style/AppSearchView"
+                        android:visibility="gone"
+                        app:iconifiedByDefault="false"
+                        app:queryHint="Search"
+                        app:searchHintIcon="@color/red"
+                        app:searchIcon="@drawable/ic_search_home"></androidx.appcompat.widget.SearchView>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/searchHeaderLAY"
+                        android:layout_margin="@dimen/padding_10"
+                        android:layout_marginBottom="@dimen/padding_10"
+                        android:background="@drawable/bg_search_cardview"
+                        android:visibility="gone">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/searchIM"
+                            android:layout_width="@dimen/padding_25"
+                            android:layout_height="@dimen/padding_25"
+                            android:layout_centerVertical="true"
+                            android:padding="@dimen/padding_2"
+                            android:src="@drawable/ic_search_home"
+                            android:tint="@color/red"></androidx.appcompat.widget.AppCompatImageView>
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginRight="10dp"
+                            android:layout_toRightOf="@+id/searchIM"
+                            android:drawableTint="@color/red"
+                            android:singleLine="true"></androidx.appcompat.widget.AppCompatEditText>
+                    </RelativeLayout>
+                </RelativeLayout>
+            </androidx.appcompat.widget.Toolbar>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/mainHeaderLAY">
+
+            <include layout="@layout/content_main2" />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
