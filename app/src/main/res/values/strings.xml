@@ -13,16 +13,27 @@
     <string name="title_activity_main2">FIHomePageActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
+    <!--
+    Bottom Menu label
+    -->
+    <string name="lbl_super_combo">Super Combo</string>
+    <string name="lbl_native_special">Native Special</string>
+    <string name="lbl_apparels">Apparels</string>
+    <string name="lbl_indian_craft">Indian Craft</string>
+    <string name="product_for_you">Product For You</string>
+    <string name="monthly_deal">Monthly Deal</string>
+    <string name="view_all">View All</string>
+    <string name="send">Send</string>
+    <string name="update">Update</string>
+    <string name="address">Address</string>
+    <string name="apartment_suite_etc">Apartment,suite,etc.,</string>
+    <string name="city">City</string>
+    <string name="state">State</string>
+    <string name="country">Country</string>
+    <string name="pin_code">Pin code</string>
+    <string name="save">Save</string>
+    <string name="title_add_new_address">Add new address</string>
+    <string name="lbl_exit_alert">Are you sure to exit?</string>
 
 </resources>

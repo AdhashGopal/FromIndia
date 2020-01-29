@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_cardview"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/productIM"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/sample_ima_two" />
+
+    <TextView
+        android:id="@+id/productDescTXT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Mr.Gold Groundnut Oil 2 ltr"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/productIM"
+        app:layout_constraintTop_toTopOf="@+id/productIM" />
+
+    <TextView
+        android:id="@+id/productPri"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:padding="2dp"
+        android:text="$450"
+        android:textColor="@color/light_coffee"
+        android:textSize="10sp"
+        app:layout_constraintStart_toStartOf="@+id/productDescTXT"
+        app:layout_constraintTop_toBottomOf="@+id/productDescTXT" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/light_gery"
+        app:layout_constraintStart_toStartOf="@+id/productIM"
+        app:layout_constraintTop_toBottomOf="@+id/productIM"></View>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:drawableLeft="@drawable/ic_delete"
+        android:drawablePadding="@dimen/padding_5dp"
+        android:padding="2dp"
+        android:text="Remove"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+</androidx.constraintlayout.widget.ConstraintLayout>

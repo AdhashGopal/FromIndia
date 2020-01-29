@@ -16,7 +16,8 @@
         <activity
             android:name=".activity.FIHomePageActivity"
             android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan"></activity>
         <activity
             android:name=".activity.FISplashActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -36,6 +37,12 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan" />
+
+        <activity
+            android:name=".activity.FIForgotPasswordActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan"></activity>
     </application>
 
 </manifest>

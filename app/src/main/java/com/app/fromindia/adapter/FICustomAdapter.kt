@@ -1,15 +1,23 @@
 package com.app.fromindia.adapter
 
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.cardview.widget.CardView
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.app.fromindia.R
-import com.app.fromindia.model.MenuData
+import com.app.fromindia.activity.FIHomePageActivity
+import com.app.fromindia.fragments.FIFragmentManager
+import com.app.fromindia.fragments.slideMenu.FISlideMenuCategoryFragment
+import com.app.fromindia.model.DynamicMenu
 
-class FICustomAdapter(val userList: ArrayList<MenuData>) : RecyclerView.Adapter<FICustomAdapter.ViewHolder>() {
+class FICustomAdapter internal constructor(val userList: ArrayList<DynamicMenu>, aContext: FragmentActivity?) : RecyclerView.Adapter<FICustomAdapter.ViewHolder>() {
+    private var mContext: FragmentActivity? = null
+    // private val mFragmentManager: FIFragmentManager
+    private var mFragmentManager: FIFragmentManager? = null
 
     //this method is returning the view for each item in the list
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FICustomAdapter.ViewHolder {
@@ -19,7 +27,7 @@ class FICustomAdapter(val userList: ArrayList<MenuData>) : RecyclerView.Adapter<
 
     //this method is binding the data on the list
     override fun onBindViewHolder(holder: FICustomAdapter.ViewHolder, position: Int) {
-        holder.bindItems(userList[position])
+        holder.bindItems(userList[position], mContext, mFragmentManager)
     }
 
     //this method is giving the size of the list
@@ -27,12 +35,25 @@ class FICustomAdapter(val userList: ArrayList<MenuData>) : RecyclerView.Adapter<
         return userList.size
     }
 
+    init {
+        mContext = aContext
+        mFragmentManager = FIFragmentManager(mContext)
+    }
+
     //the class is hodling the list view
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        fun bindItems(user: DynamicMenu, mContext: FragmentActivity?, mFragmentManager: FIFragmentManager?) {
+            val aMenuNameTXT = itemView.findViewById(R.id.menuItemNameTXT) as TextView
+            val aMenuIM = itemView.findViewById(R.id.menuItemIM) as AppCompatImageView
+            val aMainLay = itemView.findViewById(R.id.menuMainCV) as CardView
+            aMenuNameTXT.text = user.menuName
+            aMenuIM.setImageResource(user.menuImage)
+            aMainLay.setOnClickListener {
+                (mContext as FIHomePageActivity).closeDrawerSetTitle(user.menuName)  // To close the drawer
+                mFragmentManager!!.updateContent(FISlideMenuCategoryFragment(), "", null)
 
-        fun bindItems(user: MenuData) {
-            val textViewName = itemView.findViewById(R.id.menuItemNameTXT) as TextView
-            textViewName.text = user.name
+            }
+
         }
     }
 

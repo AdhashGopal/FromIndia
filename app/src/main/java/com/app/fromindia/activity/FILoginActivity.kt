@@ -1,21 +1,28 @@
 package com.app.fromindia.activity
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
-import android.inputmethodservice.Keyboard
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.app.fromindia.R
 import com.app.fromindia.helper.CommonValues.*
+import com.app.fromindia.model.User
+import com.app.fromindia.retrofit.APIClient
+import com.app.fromindia.retrofit.APIInterface
 import com.app.fromindia.utils.FIHelper
 import com.app.fromindia.utils.Utils
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_login.*
+import okhttp3.ResponseBody
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class FILoginActivity : AppCompatActivity() {
@@ -43,6 +50,12 @@ class FILoginActivity : AppCompatActivity() {
             mScreenCheck = false;
             signUpPage()
         }
+        forgotTxt.setOnClickListener {
+            mScreenCheck = true;
+            moveToForgotPage()
+
+        }
+
 
         login_btn.setOnClickListener {
             if (validation()) {
@@ -51,16 +64,23 @@ class FILoginActivity : AppCompatActivity() {
 
                 //FIHomePageActivity
 
-                val intent = Intent(applicationContext, FIHomePageActivity::class.java)
-                startActivity(intent)
-                finish()
+                /* val intent = Intent(applicationContext, FIHomePageActivity::class.java)
+                 startActivity(intent)
+                 finish()*/
+                if (Utils.isNetworkAvailable(this)) {
+                    userLogin(getUserLoginValue())
+
+                } else {
+                    Toast.makeText(applicationContext, "Pls check ur nw", Toast.LENGTH_SHORT).show();
+
+                }
             }
         }
         pwd_edt.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 if (signUpValidation()) {
                     pwdLay.error = "";
-                    Toast.makeText(applicationContext, "pwd_edt", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(applicationContext, "pwd_edt", Toast.LENGTH_SHORT).show();
                 }
                 true
             } else {
@@ -70,6 +90,8 @@ class FILoginActivity : AppCompatActivity() {
 
         registerBtn.setOnClickListener {
             if (signUpValidation()) {
+
+                callRegistration(getRegisterValues())
                 pwdLay.error = "";
                 Toast.makeText(applicationContext, "Signup", Toast.LENGTH_SHORT).show();
             }
@@ -93,6 +115,46 @@ class FILoginActivity : AppCompatActivity() {
                 loginPage()
             }
         }
+    }
+
+    private fun moveToForgotPage() {
+        val intent = Intent(applicationContext, FIForgotPasswordActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun getRegisterValues(): User? {
+
+        var aUser = User()
+
+        aUser.firstName = FIHelper.getEditTextValue(firstNameEDT)
+
+        aUser.lastName = FIHelper.getEditTextValue(lastNameEDT)
+
+        aUser.email = FIHelper.getEditTextValue(signUpEmailEDT)
+
+        aUser.password = FIHelper.getEditTextValue(signUpPwdEDT)
+
+        aUser.confirmPassword = FIHelper.getEditTextValue(signUpConfirmPwdEDT)
+
+        return aUser
+
+    }
+
+    private fun getUserLoginValue(): User? {
+
+        var aUser = User()
+
+        aUser.username = FIHelper.getEditTextValue(email_edt)
+
+        aUser.password = FIHelper.getEditTextValue(pwd_edt)
+
+        return aUser
+
+    }
+
+    private fun getValue(): User? {
+        return User()
     }
 
     //ToDo Go to SignUp page
@@ -223,4 +285,78 @@ class FILoginActivity : AppCompatActivity() {
     }
 
 
+    private fun callRegistration(aRegisterValue: User?) {
+
+        //...............................................................//
+
+        val aInnerJson = JSONObject()
+        val aCustomerJson = JSONObject()
+        aCustomerJson.put(EMAIL, aRegisterValue!!.email)
+        aCustomerJson.put(FIRST_NAME, aRegisterValue!!.firstName)
+        aCustomerJson.put(LAST_NAME, aRegisterValue!!.lastName)
+        aInnerJson.put(CUSTOMER, aCustomerJson)
+        aInnerJson.put(PASSWORD, aRegisterValue!!.password)
+        Log.e("SIGNUP", aInnerJson.toString())
+
+        //...............................................................//
+
+        var apiServices = APIClient.getClient()!!.create(APIInterface::class.java)
+
+        val aRegCall = apiServices.createUser(Utils.getJsonObjectValue(aInnerJson.toString()))
+
+        aRegCall.enqueue(object : Callback<ResponseBody?> {
+            override fun onResponse(call: Call<ResponseBody?>, response: Response<ResponseBody?>) {
+                val aConversationBody: ResponseBody? = response.body()
+                Log.e("PRINT PREEFER", call.request().url().toString())
+                Log.e("ErrorBody", response.message())
+                if (response.isSuccessful && aConversationBody != null) {
+
+                } else {
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
+            }
+        })
+    }
+
+    /**
+     * User Login
+     */
+    private fun userLogin(aRegisterValue: User?) {
+        //To Json Body
+        //...............................................................//
+        val aJsonObject = JSONObject()
+        aJsonObject.put(USERNAME, aRegisterValue!!.username)
+        aJsonObject.put(PASSWORD, aRegisterValue!!.password)
+        //...............................................................//
+
+        progressLAY.visibility = View.VISIBLE
+
+        Log.e("LOGIN JSON PARAM", aJsonObject.toString())
+        var apiServices = APIClient.getClient()!!.create(APIInterface::class.java)
+        val aRegCall = apiServices.userLogin(Utils.getJsonObjectValue(aJsonObject.toString()))
+        aRegCall.enqueue(object : Callback<ResponseBody?> {
+            override fun onResponse(call: Call<ResponseBody?>, response: Response<ResponseBody?>) {
+                val aConversationBody: ResponseBody? = response.body()
+
+                val res = response.body().toString()
+
+                Log.e("PRINT PREEFER", call.request().url().toString())
+                Log.e("ErrorBody", response.message())
+                if (response.isSuccessful && aConversationBody != null) {
+
+                    Log.e("responseString", Gson().toJson(res))
+
+                    progressLAY.visibility = View.GONE
+
+                } else {
+                }
+            }
+
+            override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
+            }
+        })
+
+    }
 }

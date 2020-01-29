@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/headerLAY"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/inflate_simple_custom_header"></include>
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/addressScrollLAY"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/saveLay"
+
+        android:layout_below="@+id/headerLAY">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/nameLAY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name"
+                android:padding="@dimen/padding_8"
+                app:errorTextAppearance="@style/ErrorText">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nameEDT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/addressLay"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/address"
+                android:padding="@dimen/padding_8"
+                app:errorTextAppearance="@style/ErrorText">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/addressEDT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/apartmentLAY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/apartment_suite_etc"
+                android:padding="@dimen/padding_8"
+                app:errorTextAppearance="@style/ErrorText">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/apartmentEDT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/cityLAY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/city"
+                android:padding="@dimen/padding_8"
+                app:errorTextAppearance="@style/ErrorText">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/cityEDT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/stateLAY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/state"
+                android:padding="@dimen/padding_8"
+                app:errorTextAppearance="@style/ErrorText">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/stateEDT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/countryLAY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/country"
+                android:padding="@dimen/padding_8"
+                app:errorTextAppearance="@style/ErrorText">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/countryEDT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/pinCodeLAY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/pin_code"
+                android:padding="@dimen/padding_8"
+                app:errorTextAppearance="@style/ErrorText">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/pinCodeEDT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/phoneNumberLAY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Phone number"
+                android:padding="@dimen/padding_8"
+                app:errorTextAppearance="@style/ErrorText">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/phoneNumberEDT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionNext"
+
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/saveLay"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/btn_height_55"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/padding_15"
+        android:background="@drawable/btn_selector"
+        android:padding="@dimen/padding_5dp"
+        android:paddingTop="@dimen/padding_15"
+        android:text="@string/save"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="normal"
+
+        app:layout_constraintTop_toBottomOf="@+id/emailEdtLay"></androidx.appcompat.widget.AppCompatButton>
+</RelativeLayout>

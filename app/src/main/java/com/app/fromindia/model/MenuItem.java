@@ -6,6 +6,8 @@ public class MenuItem {
 
     String MenuId = "";
 
+    String MenuUrl = "";
+
     public String getMenuName() {
         return MenuName;
     }
@@ -21,4 +23,13 @@ public class MenuItem {
     public void setMenuId(String menuId) {
         MenuId = menuId;
     }
+
+    public String getMenuUrl() {
+        return MenuUrl;
+    }
+
+    public void setMenuUrl(String menuUrl) {
+        MenuUrl = menuUrl;
+    }
+
 }

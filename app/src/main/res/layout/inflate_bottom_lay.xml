@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_8"
+        android:weightSum="4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:id="@+id/superComboLAY"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/superComboIM"
+                android:layout_width="@dimen/dimen_btm_menu"
+                android:layout_height="@dimen/dimen_btm_menu"
+                android:layout_centerHorizontal="true"
+                android:padding="@dimen/padding_2"
+                android:src="@drawable/ic_super_combo"></androidx.appcompat.widget.AppCompatImageView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/superComboTXT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/superComboIM"
+                android:layout_centerHorizontal="true"
+                android:paddingTop="@dimen/padding_5dp"
+                android:text="@string/lbl_super_combo"
+                android:textSize="@dimen/dimen_txt_12"></androidx.appcompat.widget.AppCompatTextView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/nativeSpecialLAY"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/nativeSpecialIM"
+                android:layout_width="@dimen/dimen_btm_menu"
+                android:layout_height="@dimen/dimen_btm_menu"
+                android:layout_centerHorizontal="true"
+                android:padding="@dimen/padding_2"
+                android:src="@drawable/ic_native_special"></androidx.appcompat.widget.AppCompatImageView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/nativeSpecialTXT"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/nativeSpecialIM"
+                android:layout_centerHorizontal="true"
+                android:paddingTop="@dimen/padding_5dp"
+
+                android:text="@string/lbl_native_special"
+                android:textSize="@dimen/dimen_txt_12"></androidx.appcompat.widget.AppCompatTextView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/apparelsLAY"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/apparelsIM"
+                android:layout_width="@dimen/dimen_btm_menu"
+                android:layout_height="@dimen/dimen_btm_menu"
+                android:layout_centerHorizontal="true"
+                android:padding="@dimen/padding_2"
+                android:src="@drawable/ic_apparels"></androidx.appcompat.widget.AppCompatImageView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/apparelsTXT"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/apparelsIM"
+                android:layout_centerHorizontal="true"
+                android:paddingTop="@dimen/padding_5dp"
+
+                android:text="@string/lbl_apparels"
+                android:textSize="@dimen/dimen_txt_12"></androidx.appcompat.widget.AppCompatTextView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/indianCraftLAY"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/indianCraftIM"
+                android:layout_width="@dimen/dimen_btm_menu"
+                android:layout_height="@dimen/dimen_btm_menu"
+                android:layout_centerHorizontal="true"
+                android:padding="@dimen/padding_2"
+                android:src="@drawable/ic_indian_craft"></androidx.appcompat.widget.AppCompatImageView>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/indianCraftTXT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/indianCraftIM"
+                android:layout_centerHorizontal="true"
+                android:paddingTop="@dimen/padding_5dp"
+                android:text="@string/lbl_indian_craft"
+                android:textSize="@dimen/dimen_txt_12"></androidx.appcompat.widget.AppCompatTextView>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

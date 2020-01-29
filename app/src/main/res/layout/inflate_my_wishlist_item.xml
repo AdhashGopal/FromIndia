@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/wishListMainLAY"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="8dp"
+    android:background="@drawable/bg_cardview"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/wishListProductIM"
+        android:layout_width="@dimen/product_dimen_80"
+        android:layout_height="@dimen/product_dimen_80"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:scaleType="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/sample_ima_two" />
+
+    <TextView
+        android:id="@+id/wishListProductDescTXT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+
+        android:layout_marginTop="4dp"
+        android:padding="@dimen/padding_2"
+        android:text="Mr.Gold Groundnut Oil 2 ltr"
+        android:textSize="@dimen/dimen_14sp"
+        app:layout_constraintStart_toEndOf="@+id/wishListProductIM"
+        app:layout_constraintTop_toTopOf="@+id/wishListProductIM" />
+
+    <TextView
+        android:id="@+id/wishListProductPriceTXT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:padding="@dimen/padding_2"
+        android:text="$450"
+        android:textColor="@color/light_coffee"
+        android:textSize="@dimen/dimen_14sp"
+        app:layout_constraintStart_toStartOf="@+id/wishListProductDescTXT"
+        app:layout_constraintTop_toBottomOf="@+id/wishListProductDescTXT" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/light_gery"
+        app:layout_constraintStart_toStartOf="@+id/textView8"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"></View>
+
+    <TextView
+        android:id="@+id/wishListRemoveTXT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:drawableLeft="@drawable/ic_delete"
+        android:drawablePadding="@dimen/padding_5dp"
+        android:padding="@dimen/padding_2"
+        android:text="Remove"
+        android:textSize="@dimen/dimen_14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:text="Out of stock"
+        android:textColor="@color/red"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@+id/view2"
+        app:layout_constraintTop_toBottomOf="@+id/wishListProductIM" />
+</androidx.constraintlayout.widget.ConstraintLayout>

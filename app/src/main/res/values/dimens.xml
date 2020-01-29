@@ -20,4 +20,25 @@
     <dimen name="dimen_home_wh_40">40dp</dimen>
     <dimen name="dimen_35">35dp</dimen>
     <dimen name="dimen_55">55dp</dimen>
+    <dimen name="dimen_30">30dp</dimen>
+    <dimen name="padding_2">2dp</dimen>
+    <dimen name="dimen_btm_menu">25dp</dimen>
+    <dimen name="dimen_txt_12">10sp</dimen>
+    <dimen name="padding_4">4dp</dimen>
+    <dimen name="dimen_14sp">14sp</dimen>
+    <dimen name="product_dimen_60">60dp</dimen>
+    <dimen name="product_dimen_80">90dp</dimen>
+    <dimen name="dimen_auto">160dp</dimen>
+    <dimen name="dimen_circle">48dp</dimen>
+    <dimen name="dimen_60">60dp</dimen>
+    <dimen name="dimen_txt_18">18sp</dimen>
+    <dimen name="diemn_text_12sp">12sp</dimen>
+    <dimen name="dimen_profile_80">80dp</dimen>
+    <dimen name="dimen_pheader_160">160dp</dimen>
+    <dimen name="header_txt_20sp">20sp</dimen>
+    <dimen name="header_size_55">55dp</dimen>
+    <dimen name="dimen_25">25dp</dimen>
+    <dimen name="dimen_pDetail_image">240dp</dimen>
+    <dimen name="dimen_16sp">16sp</dimen>
+
 </resources>

@@ -13,9 +13,13 @@ class FISplashActivity : AppCompatActivity() {
 
     private val mRunnable: Runnable = Runnable {
         if (!isFinishing) {
-            val intent = Intent(applicationContext, SampleKotlin::class.java)
+            val intent = Intent(applicationContext, FIHomePageActivity::class.java)
             startActivity(intent)
             finish()
+
+            /*    val intent = Intent(applicationContext, SampleKotlin::class.java)
+                startActivity(intent)
+                finish()*/
         }
     }
 

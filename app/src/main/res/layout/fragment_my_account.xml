@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gery"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:id="@+id/profileImageLAY"
+                        android:layout_width="match_parent"
+                        android:layout_height="120dp"
+                        android:background="@color/app_green"
+                        android:paddingLeft="@dimen/padding_15">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/profileIM"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_launcher_icon"></de.hdodenhof.circleimageview.CircleImageView>
+
+                        <LinearLayout
+                            android:id="@+id/profileDescLAY"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toLeftOf="@+id/editProfileIM"
+                            android:layout_toRightOf="@+id/profileIM"
+                            android:orientation="vertical"
+                            android:paddingLeft="@dimen/padding_15">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Gopal.S"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/dimen_14sp"
+                                android:textStyle="bold"></androidx.appcompat.widget.AppCompatTextView>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="+91 9894446120"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/dimen_14sp"
+                                android:textStyle="bold"></androidx.appcompat.widget.AppCompatTextView>
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="sgkrishnancs@gmial.com"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/dimen_14sp"
+                                android:textStyle="bold"></androidx.appcompat.widget.AppCompatTextView>
+
+                        </LinearLayout>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/editProfileIM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:padding="@dimen/padding_15"
+                            android:src="@drawable/ic_mode_edit"
+                            android:tint="@color/white"></androidx.appcompat.widget.AppCompatImageView>
+
+                    </RelativeLayout>
+
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/profileMenuRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:background="@drawable/bg_cardview"
+                    android:padding="@dimen/padding_10" />
+
+                <RelativeLayout
+                    android:id="@+id/logoutLAY"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:background="@drawable/bg_cardview"
+                    android:padding="@dimen/padding_20">
+
+                    <ImageView
+                        android:id="@+id/logoutIM"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_log_out"></ImageView>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toRightOf="@+id/logoutIM"
+
+                        android:paddingLeft="@dimen/padding_15"
+                        android:text="Logout"
+                        android:textColor="@color/app_secondary_color"></androidx.appcompat.widget.AppCompatTextView>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+    </RelativeLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

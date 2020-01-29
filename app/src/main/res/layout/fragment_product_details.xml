@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:attrs="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gery"
+    android:clickable="true">
+
+    <RelativeLayout
+        android:id="@+id/headerLAY"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/inflate_custom_header"></include>
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomBtnLAY"
+        android:layout_below="@+id/headerLAY"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_pDetail_image"
+                    android:background="@drawable/bg_cardview">
+
+                    <ImageView
+                        android:layout_width="@dimen/dimen_25"
+                        android:layout_height="@dimen/dimen_25"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/padding_10"
+                        android:layout_marginRight="@dimen/padding_15"
+                        android:src="@drawable/ic_wish_list"></ImageView>
+
+                    <com.asksira.loopingviewpager.LoopingViewPager
+                        android:id="@+id/productScrollVP"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dimen_pDetail_image"
+                        android:scrollIndicators="bottom|left"
+                        app:autoScroll="false"
+                        app:isInfinite="false"
+                        app:scrollInterval="3000" />
+
+                    <com.rd.PageIndicatorView
+                        android:id="@+id/productPageIndicatorView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerInParent="true"
+                        android:layout_marginBottom="@dimen/padding_5dp"
+                        android:padding="@dimen/padding_10"
+                        app:piv_animationType="thinWorm"
+                        app:piv_interactiveAnimation="true"
+                        app:piv_selectedColor="@color/app_secondary_color"
+                        app:piv_unselectedColor="@color/bg_gery"
+                        attrs:piv_padding="12dp"
+                        attrs:piv_radius="1dp" />
+
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/light_gery"></View>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_cardview"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/padding_10"
+                    android:paddingTop="@dimen/padding_10"
+                    android:paddingBottom="@dimen/padding_10">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/padding_5dp"
+                        android:text="Bags made in India with vibrant"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dimen_16sp"></androidx.appcompat.widget.AppCompatTextView>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/padding_5dp"
+                        android:text="In Stock"
+                        android:textAllCaps="true"
+                        android:textColor="@color/app_green"
+                        android:textSize="@dimen/dimen_14sp"
+                        android:textStyle="bold"></androidx.appcompat.widget.AppCompatTextView>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/padding_5dp"
+                        android:text="$4.50"
+                        android:textColor="@color/app_secondary_color"
+                        android:textSize="@dimen/dimen_16sp"></androidx.appcompat.widget.AppCompatTextView>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:background="@drawable/bg_cardview"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_10">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/padding_5dp"
+                            android:text="Product Details"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dimen_16sp"></androidx.appcompat.widget.AppCompatTextView>
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/dimen_25"
+                            android:layout_height="@dimen/dimen_25"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginRight="@dimen/padding_5dp"
+                            android:padding="@dimen/padding_5dp"
+                            android:src="@drawable/ic_arrow_up"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/dimen_16sp"></androidx.appcompat.widget.AppCompatImageView>
+
+                    </RelativeLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/padding_10"
+                        android:paddingLeft="@dimen/padding_5dp"
+                        android:paddingTop="@dimen/padding_5dp"
+                        android:text="Bags made in India with vibrant, graphical and colorful prints"
+                        android:textSize="14sp"></androidx.appcompat.widget.AppCompatTextView>
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:id="@+id/moreInfoLAY"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:background="@drawable/bg_cardview"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_10">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/padding_5dp"
+                        android:text="More Information"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dimen_16sp"></androidx.appcompat.widget.AppCompatTextView>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/dimen_25"
+                        android:layout_height="@dimen/dimen_25"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/padding_5dp"
+                        android:padding="@dimen/padding_5dp"
+                        android:src="@drawable/ic_arrow_right"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dimen_16sp"></androidx.appcompat.widget.AppCompatImageView>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/relatedPostLAY"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:background="@drawable/bg_cardview"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_10">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/padding_5dp"
+                        android:text="Related Posts"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dimen_16sp"></androidx.appcompat.widget.AppCompatTextView>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/dimen_25"
+                        android:layout_height="@dimen/dimen_25"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/padding_5dp"
+                        android:padding="@dimen/padding_5dp"
+                        android:src="@drawable/ic_arrow_right"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dimen_16sp"></androidx.appcompat.widget.AppCompatImageView>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/customTabLAY"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_10"
+                    android:background="@drawable/bg_cardview"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_10">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/padding_5dp"
+                        android:text="Custome Tab"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dimen_16sp"></androidx.appcompat.widget.AppCompatTextView>
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/dimen_25"
+                        android:layout_height="@dimen/dimen_25"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/padding_5dp"
+                        android:padding="@dimen/padding_5dp"
+                        android:src="@drawable/ic_arrow_right"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/dimen_16sp"></androidx.appcompat.widget.AppCompatImageView>
+
+                </RelativeLayout>
+
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/bottomBtnLAY"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="@dimen/padding_10"
+        android:background="@drawable/bg_cardview"
+        android:paddingBottom="@dimen/padding_10"
+        android:weightSum="2">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/addToCatBtn"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/btn_height_55"
+            android:layout_marginLeft="@dimen/padding_5dp"
+            android:layout_marginTop="@dimen/padding_15"
+            android:layout_marginRight="@dimen/padding_5dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_border_view"
+            android:padding="@dimen/padding_5dp"
+            android:paddingTop="@dimen/padding_15"
+            android:text="Add to cart"
+            android:textColor="@color/app_secondary_color"
+            android:textSize="18sp"
+            android:textStyle="normal"></androidx.appcompat.widget.AppCompatButton>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buyBtn"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/btn_height_55"
+            android:layout_marginLeft="@dimen/padding_5dp"
+            android:layout_marginTop="@dimen/padding_15"
+            android:layout_marginRight="@dimen/padding_5dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_selector"
+            android:padding="@dimen/padding_5dp"
+            android:paddingTop="@dimen/padding_15"
+            android:text="Buy now"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="normal"></androidx.appcompat.widget.AppCompatButton>
+    </LinearLayout>
+</RelativeLayout>

@@ -11,7 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.app.fromindia.R;
 
 
-public class FIFragmentManager {
+public class FIFragmentManagerTest {
 
     private FragmentActivity myContext;
 
@@ -25,7 +25,7 @@ public class FIFragmentManager {
      *
      * @param aContext
      */
-    public FIFragmentManager(FragmentActivity aContext) {
+    public FIFragmentManagerTest(FragmentActivity aContext) {
         myContext = aContext;
     }
 

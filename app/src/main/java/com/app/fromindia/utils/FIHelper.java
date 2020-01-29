@@ -9,7 +9,9 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
+import androidx.core.content.ContextCompat;
 
 import com.app.fromindia.R;
 import com.google.android.material.textfield.TextInputEditText;
@@ -66,15 +68,15 @@ public class FIHelper {
     }
 
 
-    public static void hideKeyboardFrom(Context context, View view) {
-        InputMethodManager imm = (InputMethodManager) context.getSystemService(Activity.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+    public static void changeTextImageColor(Activity aContext, AppCompatImageView aImageView, AppCompatTextView aLoginTxt) {
+        aImageView.setColorFilter(ContextCompat.getColor(aContext, R.color.light_coffee), android.graphics.PorterDuff.Mode.SRC_IN);
+        aLoginTxt.setTextColor(aContext.getResources().getColor(R.color.light_coffee));
     }
 
-    private static void showKeyboard(Activity activity) {
-        View v = activity.getCurrentFocus();
-        InputMethodManager imm = (InputMethodManager) activity.getSystemService(Context.INPUT_METHOD_SERVICE);
-        assert imm != null && v != null;
-        imm.showSoftInput(v, InputMethodManager.SHOW_IMPLICIT);
+    public static void changeTextImageRestColor(Activity aContext, AppCompatImageView aImageView, AppCompatTextView aLoginTxt) {
+        aImageView.setColorFilter(ContextCompat.getColor(aContext, R.color.black), android.graphics.PorterDuff.Mode.SRC_IN);
+        aLoginTxt.setTextColor(aContext.getResources().getColor(R.color.black));
     }
+
+
 }

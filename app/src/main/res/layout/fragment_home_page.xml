@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:attrs="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gery"
+    android:orientation="vertical">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/autoScrollMainLAY"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dimen_auto"
+                android:layout_margin="5dp"
+                android:layout_marginTop="@dimen/padding_10">
+
+                <com.asksira.loopingviewpager.LoopingViewPager
+                    android:id="@+id/autoScrollVP"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dimen_auto"
+                    android:scrollIndicators="bottom|left"
+                    app:autoScroll="true"
+                    app:isInfinite="true"
+                    app:scrollInterval="3000" />
+
+                <com.rd.PageIndicatorView
+                    android:id="@+id/pageIndicatorView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginBottom="@dimen/padding_5dp"
+                    android:padding="@dimen/padding_10"
+                    app:piv_animationType="thinWorm"
+                    app:piv_interactiveAnimation="true"
+                    app:piv_selectedColor="@color/app_secondary_color"
+                    app:piv_unselectedColor="@color/bg_gery"
+                    attrs:piv_padding="12dp"
+                    attrs:piv_radius="1dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/autoScrollMainLAY"
+                android:layout_marginTop="@dimen/padding_10"
+                android:background="@drawable/bg_cardview">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/hintCityTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:padding="@dimen/padding_2"
+                    android:text="Select Your Native-Shop Monthly Essentials"
+                    android:textColor="@color/app_secondary_color"
+                    android:textSize="@dimen/diemn_text_12sp"></androidx.appcompat.widget.AppCompatTextView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/cityListRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/hintCityTxt"
+                    android:layout_marginTop="@dimen/padding_2"
+                    android:padding="@dimen/padding_2"></androidx.recyclerview.widget.RecyclerView>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/productItemLAY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_10"
+                android:background="@drawable/bg_cardview"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="@dimen/padding_5dp"
+                        android:text="@string/product_for_you"
+                        android:textColor="@color/black"></TextView>
+
+                    <TextView
+                        android:id="@+id/productListViewAllTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/padding_5dp"
+                        android:background="@drawable/bg_border_view"
+                        android:drawableRight="@drawable/ic_arrow_small_right"
+                        android:drawablePadding="@dimen/padding_2"
+                        android:drawableTint="@color/app_secondary_color"
+                        android:paddingLeft="@dimen/padding_5dp"
+                        android:paddingTop="@dimen/padding_5dp"
+                        android:paddingRight="@dimen/padding_5dp"
+                        android:paddingBottom="@dimen/padding_5dp"
+                        android:text="@string/view_all"
+                        android:textColor="@color/app_secondary_color"
+                        android:textSize="@dimen/diemn_text_12sp"></TextView>
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="@dimen/padding_2"
+                    android:background="@color/light_gery"
+                    android:paddingTop="@dimen/padding_10"
+                    android:paddingBottom="@dimen/padding_10"></View>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/productListRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_2"></androidx.recyclerview.widget.RecyclerView>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/monthlyItemLay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/padding_10"
+                android:background="@drawable/bg_cardview"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="@dimen/padding_5dp"
+                        android:text="@string/monthly_deal"
+                        android:textColor="@color/black"></TextView>
+
+                    <TextView
+                        android:id="@+id/monthlyDealViewAllTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/padding_5dp"
+                        android:background="@drawable/bg_border_view"
+                        android:drawableRight="@drawable/ic_arrow_small_right"
+                        android:drawablePadding="@dimen/padding_2"
+                        android:drawableTint="@color/app_secondary_color"
+                        android:paddingLeft="@dimen/padding_5dp"
+                        android:paddingTop="@dimen/padding_5dp"
+                        android:paddingRight="@dimen/padding_5dp"
+                        android:paddingBottom="@dimen/padding_5dp"
+                        android:text="@string/view_all"
+                        android:textColor="@color/app_secondary_color"
+                        android:textSize="@dimen/diemn_text_12sp"></TextView>
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginTop="@dimen/padding_2"
+                    android:background="@color/light_gery"
+                    android:paddingTop="@dimen/padding_10"
+                    android:paddingBottom="@dimen/padding_10"></View>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/monthlyProductListRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_2"></androidx.recyclerview.widget.RecyclerView>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>
