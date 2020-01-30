@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,10 +14,13 @@ import com.app.fromindia.adapter.FIHomeProductListAdapter
 import com.app.fromindia.adapter.FIMenuProductListAdapter
 import com.app.fromindia.model.MenuItem
 import com.app.fromindia.utils.MiddleDividerItemDecoration
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class FISlideMenuCategoryFragment : Fragment() {
 
     private var mItemRC: RecyclerView? = null
+    private var mSortLAY: RelativeLayout? = null
+    private var mFilterLAY: RelativeLayout? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +38,14 @@ class FISlideMenuCategoryFragment : Fragment() {
 
     private fun classWidgets(aView: View) {
         mItemRC = aView!!.findViewById(R.id.categoryItemRC) as RecyclerView
+        mSortLAY = aView!!.findViewById(R.id.sortLAY) as RelativeLayout
+        mFilterLAY = aView!!.findViewById(R.id.filterLAY) as RelativeLayout
         toSetProductValue()
+        clickListener()
+    }
+
+    private fun clickListener() {
+        mSortLAY!!.setOnClickListener { showBottomSheet() }
     }
 
 
@@ -101,4 +112,11 @@ class FISlideMenuCategoryFragment : Fragment() {
 
     }
 
+    private fun showBottomSheet() {
+
+        val view = layoutInflater.inflate(R.layout.inflate_sort_sheet, null)
+        val dialog = BottomSheetDialog(this!!.activity!!)
+        dialog.setContentView(view)
+        dialog.show()
+    }
 }

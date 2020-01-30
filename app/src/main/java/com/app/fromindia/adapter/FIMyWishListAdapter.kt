@@ -61,7 +61,6 @@ class FIMyWishListAdapter internal constructor(val aStaticMenuList: ArrayList<Dy
 
     }
 
-
     //the class is holding  the list view
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
