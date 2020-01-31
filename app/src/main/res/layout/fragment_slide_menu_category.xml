@@ -5,12 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:clickable="true"
     android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/headerLAY"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/inflate_custom_header"></include>
+
+    </RelativeLayout>
 
     <RelativeLayout
         android:id="@+id/sortMainLAY"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/headerLAY"
         android:padding="@dimen/padding_10">
 
         <LinearLayout

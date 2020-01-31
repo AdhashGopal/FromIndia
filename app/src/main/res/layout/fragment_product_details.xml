@@ -121,6 +121,8 @@
                     android:padding="@dimen/padding_10">
 
                     <RelativeLayout
+                        android:id="@+id/productMainDetailLAY"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 

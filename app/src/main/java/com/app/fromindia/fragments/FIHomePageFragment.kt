@@ -313,6 +313,8 @@ class FIHomePageFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         (mContext as FIHomePageActivity).hideNormalHeader()
+        (activity as FIHomePageActivity).showToolbarHead()
+
         mAutoScrollVP!!.resumeAutoScroll()
         activity?.let { Utils.hideKeyboard(it) }
     }
@@ -322,8 +324,5 @@ class FIHomePageFragment : Fragment() {
         super.onPause()
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        (mContext as FIHomePageActivity).hideSearchHeader()
-    }
+
 }

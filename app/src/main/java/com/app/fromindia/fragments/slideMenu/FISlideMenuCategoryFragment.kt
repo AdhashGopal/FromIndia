@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,15 +13,19 @@ import com.app.fromindia.R
 import com.app.fromindia.activity.FIHomePageActivity
 import com.app.fromindia.adapter.FIHomeProductListAdapter
 import com.app.fromindia.adapter.FIMenuProductListAdapter
+import com.app.fromindia.fragments.FIFragmentManager
+import com.app.fromindia.fragments.FISortBottomSheetFragment
 import com.app.fromindia.model.MenuItem
 import com.app.fromindia.utils.MiddleDividerItemDecoration
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.android.synthetic.main.inflate_custom_header.*
 
 class FISlideMenuCategoryFragment : Fragment() {
 
     private var mItemRC: RecyclerView? = null
     private var mSortLAY: RelativeLayout? = null
     private var mFilterLAY: RelativeLayout? = null
+    private var mFragmentManager: FIFragmentManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,15 +42,20 @@ class FISlideMenuCategoryFragment : Fragment() {
     }
 
     private fun classWidgets(aView: View) {
+        mFragmentManager = FIFragmentManager(activity)
         mItemRC = aView!!.findViewById(R.id.categoryItemRC) as RecyclerView
         mSortLAY = aView!!.findViewById(R.id.sortLAY) as RelativeLayout
         mFilterLAY = aView!!.findViewById(R.id.filterLAY) as RelativeLayout
+
         toSetProductValue()
         clickListener()
     }
 
     private fun clickListener() {
         mSortLAY!!.setOnClickListener { showBottomSheet() }
+        mFilterLAY!!.setOnClickListener {
+            mFragmentManager!!.updateContent(FISortBottomSheetFragment(), "", null)
+        }
     }
 
 
@@ -101,19 +111,18 @@ class FISlideMenuCategoryFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         (activity as FIHomePageActivity).hideBottomTab()
-        (activity as FIHomePageActivity).showToolbarHead()
+        (activity as FIHomePageActivity).hideToolbarHead()
 
     }
 
     override fun onDestroy() {
         super.onDestroy()
         (activity as FIHomePageActivity).showBottomTab()
-        (activity as FIHomePageActivity).hideToolbarHead()
+        (activity as FIHomePageActivity).showToolbarHead()
 
     }
 
     private fun showBottomSheet() {
-
         val view = layoutInflater.inflate(R.layout.inflate_sort_sheet, null)
         val dialog = BottomSheetDialog(this!!.activity!!)
         dialog.setContentView(view)

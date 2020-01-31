@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
@@ -17,6 +18,7 @@ import com.app.fromindia.adapter.FIProductListAdapter
 import com.app.fromindia.model.MenuItem
 import com.asksira.loopingviewpager.LoopingViewPager
 import com.rd.PageIndicatorView
+import kotlinx.android.synthetic.main.fragment_product_details.*
 
 
 class FIProductDetailFragment : Fragment() {
@@ -36,6 +38,10 @@ class FIProductDetailFragment : Fragment() {
     private var mProductDetailTxt: AppCompatTextView? = null
 
     private var mProductDetailLAY: LinearLayout? = null
+
+    private var mWishIM: AppCompatImageView? = null
+
+    private var productMainDetailLAY: RelativeLayout? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,6 +74,13 @@ class FIProductDetailFragment : Fragment() {
         mProductDetailTxt = aView!!.findViewById(R.id.productDetailTXT) as AppCompatTextView
 
         mProductDetailLAY = aView!!.findViewById(R.id.productDetailLAY) as LinearLayout
+
+        productMainDetailLAY = aView!!.findViewById(R.id.productMainDetailLAY) as RelativeLayout
+
+
+        mWishIM = aView!!.findViewById(R.id.myWishListIM) as AppCompatImageView
+
+        mWishIM!!.visibility = View.GONE
 
         toSetStaticValue()
 
@@ -131,7 +144,7 @@ class FIProductDetailFragment : Fragment() {
             mFragmentManager!!.backPress()
         }
 
-        mPRoductDetailIM!!.setOnClickListener {
+        productMainDetailLAY!!.setOnClickListener {
             if (mProductDetailLAY!!.visibility == View.VISIBLE) {
                 collapse(mProductDetailLAY)
 

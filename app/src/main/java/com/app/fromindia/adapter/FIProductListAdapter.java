@@ -64,4 +64,8 @@ public class FIProductListAdapter extends LoopingPagerAdapter<MenuItem> {
                 return android.R.color.black;
         }
     }
+
+    private void test() {
+
+    }
 }

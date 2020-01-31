@@ -28,6 +28,9 @@ class FIEditAccountFragment : Fragment() {
 
     private var mBackIM: AppCompatImageView? = null
 
+    private var mUpdateTXT: TextView? = null
+
+    private var mHeaderTXT: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +52,14 @@ class FIEditAccountFragment : Fragment() {
         mFragmentManager = FIFragmentManager(activity)
 
         mBackIM = aView!!.findViewById(R.id.backIm) as AppCompatImageView
+
+        mUpdateTXT = aView!!.findViewById(R.id.updateTXT) as TextView
+
+        mHeaderTXT = aView!!.findViewById(R.id.headerTXT) as TextView
+
+        mUpdateTXT!!.text = getString(R.string.update)
+
+        mHeaderTXT!!.text = getString(R.string.edit_profile)
 
         clickListener()
     }

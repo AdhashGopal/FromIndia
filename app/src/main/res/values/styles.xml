@@ -51,4 +51,12 @@
     <style name="progressBarColor" parent="ThemeOverlay.AppCompat.Dark">
         <item name="colorAccent">@color/app_secondary_color</item>
     </style>
+
+    <style name="MyRadioButtonStyle" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="buttonTint">@drawable/btn_selecet_radiobtn</item>
+    </style>
+
+    <style name="MyCheckBoxStyle" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="buttonTint">@drawable/btn_selecet_radiobtn</item>
+    </style>
 </resources>

@@ -8,6 +8,16 @@ public class DynamicMenu {
 
     int MenuImage = 0;
 
+    public boolean isCheck() {
+        return isCheck;
+    }
+
+    public void setCheck(boolean check) {
+        isCheck = check;
+    }
+
+    boolean isCheck = false;
+
     public String getMenuName() {
         return MenuName;
     }
