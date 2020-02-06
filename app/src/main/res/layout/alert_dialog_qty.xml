@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_cardview">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/padding_10">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Enter Quantity"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dimen_14sp"></androidx.appcompat.widget.AppCompatTextView>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edtTL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/padding_5dp"
+                app:errorTextAppearance="@style/ErrorText">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/edtLAY"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:inputType="number"
+                    android:padding="@dimen/padding_5dp"></com.google.android.material.textfield.TextInputEditText>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gery"></View>
+
+            <LinearLayout
+                android:id="@+id/bottomBtnLAY"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:padding="@dimen/padding_5dp"
+                android:weightSum="2">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/cancelBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padding_5dp"
+                    android:layout_marginRight="@dimen/padding_5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/padding_8"
+                    android:paddingTop="@dimen/padding_15"
+                    android:text="Cancel"
+
+
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    android:textStyle="normal"></androidx.appcompat.widget.AppCompatTextView>
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:background="@color/gery"></View>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/applyBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/padding_8"
+                    android:layout_marginRight="@dimen/padding_5dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:padding="@dimen/padding_5dp"
+                    android:paddingTop="@dimen/padding_15"
+                    android:text="Apply"
+                    android:textColor="@color/app_secondary_color"
+                    android:textSize="14sp"
+                    android:textStyle="normal"></androidx.appcompat.widget.AppCompatTextView>
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

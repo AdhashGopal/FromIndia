@@ -38,5 +38,6 @@
     <string name="edit_profile">Edit Profile</string>
     <string name="lbl_clear_filter">Clear Filters</string>
     <string name="header_filter">Filters</string>
+    <string name="lbl_enter_qty">Please enter the quantity</string>
 
 </resources>

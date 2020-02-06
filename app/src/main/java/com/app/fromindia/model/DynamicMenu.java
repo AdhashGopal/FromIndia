@@ -8,6 +8,16 @@ public class DynamicMenu {
 
     int MenuImage = 0;
 
+    public int getQty() {
+        return Qty;
+    }
+
+    public void setQty(int aQty) {
+        this.Qty = aQty;
+    }
+
+    int Qty = 1;
+
     public boolean isCheck() {
         return isCheck;
     }

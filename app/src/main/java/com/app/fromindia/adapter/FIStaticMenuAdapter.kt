@@ -58,7 +58,8 @@ class FIStaticMenuAdapter internal constructor(val aStaticMenuList: ArrayList<Dy
                     2 -> mFragmentManager!!.updateContent(FIMyWishListFragment(), "", null)
                     3 -> mFragmentManager!!.updateContent(FIMyAccountFragment(), "", null)
                     4 -> mFragmentManager!!.updateContent(FIMyNotificationFragment(), "", null)
-                    5 -> mFragmentManager!!.updateContent(FIMyPointsRewardsFragment(), "", null)
+                    //  5 -> mFragmentManager!!.updateContent(FIMyPointsRewardsFragment(), "", null)
+                    5 -> mFragmentManager!!.updateContent(FIMyCartFragment(), "", null)
                 }
             }
         }

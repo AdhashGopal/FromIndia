@@ -40,5 +40,6 @@
     <dimen name="dimen_25">25dp</dimen>
     <dimen name="dimen_pDetail_image">240dp</dimen>
     <dimen name="dimen_16sp">16sp</dimen>
+    <dimen name="btn_height_60">60dp</dimen>
 
 </resources>

@@ -303,7 +303,10 @@ class FIHomePageActivity : CommonValues, AppCompatActivity(), NavigationView.OnN
         searchBurgerMenu.setOnClickListener {
             openDrawer()
         }
-        homeIM.setOnClickListener { defaultFragment() }
+        homeIM.setOnClickListener {
+            closeDrawer()
+            defaultFragment()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

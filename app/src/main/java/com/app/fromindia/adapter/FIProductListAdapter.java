@@ -66,6 +66,5 @@ public class FIProductListAdapter extends LoopingPagerAdapter<MenuItem> {
     }
 
     private void test() {
-
     }
 }

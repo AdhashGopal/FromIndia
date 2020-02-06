@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/padding_10"
+    android:background="@drawable/bg_cardview"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <RelativeLayout
+            android:id="@+id/cartItemLAY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/productIM"
+                android:layout_width="@dimen/product_dimen_80"
+                android:layout_height="@dimen/product_dimen_80"
+                android:src="@drawable/sample_ima_two"></ImageView>
+
+            <LinearLayout
+                android:id="@+id/descLAY"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/qtyTXT"
+                android:layout_toRightOf="@+id/productIM"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_5dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/productDescTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="Sample date to test the length"></androidx.appcompat.widget.AppCompatTextView>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/productAmtTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:text="$4.50"
+                    android:textColor="@color/app_secondary_color"></androidx.appcompat.widget.AppCompatTextView>
+
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/qtyTXT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/padding_10"
+                android:background="@drawable/bg_border_grey_view"
+                android:drawableRight="@drawable/ic_small_arrow_down"
+                android:drawablePadding="@dimen/padding_10"
+                android:gravity="center"
+                android:padding="@dimen/padding_5dp"
+                android:paddingLeft="@dimen/padding_10"
+                android:paddingTop="@dimen/padding_5dp"
+                android:text="Qty: 1"
+                android:textColor="@color/black"></androidx.appcompat.widget.AppCompatTextView>
+
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/qtySpinnerLAY"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_margin="50dp"
+            android:autofillHints="@string/update"
+            android:background="@android:color/transparent" />
+
+        <View
+            android:id="@+id/viewLAY"
+            android:layout_width="wrap_content"
+            android:layout_height="1dp"
+            android:layout_below="@+id/cartItemLAY"
+            android:layout_marginTop="@dimen/padding_5dp"
+            android:background="@color/light_gery"></View>
+
+        <TextView
+            android:id="@+id/cartItemRemoveTXT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/viewLAY"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:drawableLeft="@drawable/ic_delete"
+            android:drawablePadding="@dimen/padding_5dp"
+            android:padding="@dimen/padding_4"
+            android:paddingBottom="@dimen/padding_5dp"
+            android:text="Remove"
+
+            android:textSize="@dimen/dimen_14sp" />
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
