@@ -1,5 +1,6 @@
 package com.app.fromindia.activity
 
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.util.DisplayMetrics
@@ -28,6 +29,7 @@ import com.app.fromindia.fragments.bottomMenu.FINativeSpecialFragment
 import com.app.fromindia.fragments.bottomMenu.FISuperComboFragment
 import com.app.fromindia.helper.CommonValues
 import com.app.fromindia.helper.CommonValues.*
+import com.app.fromindia.helper.PreferenceHelper
 import com.app.fromindia.model.DynamicMenu
 import com.app.fromindia.utils.FIHelper
 import com.google.android.material.navigation.NavigationView
@@ -36,6 +38,8 @@ import kotlinx.android.synthetic.main.app_bar_main2.*
 import kotlinx.android.synthetic.main.content_main2.*
 import kotlinx.android.synthetic.main.homeheader.*
 import kotlinx.android.synthetic.main.inflate_bottom_lay.*
+import com.app.fromindia.helper.PreferenceHelper.userId
+import com.app.fromindia.utils.Utils
 
 
 class FIHomePageActivity : CommonValues, AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -44,11 +48,14 @@ class FIHomePageActivity : CommonValues, AppCompatActivity(), NavigationView.OnN
 
     private var mFragementManager: FIFragmentManager? = null
 
+    private var mPrefs: SharedPreferences? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
         mContext = this@FIHomePageActivity
         mFragementManager = FIFragmentManager(mContext)
+        mPrefs = PreferenceHelper.defaultPreference(this)
         setSupportActionBar(toolbar)
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)

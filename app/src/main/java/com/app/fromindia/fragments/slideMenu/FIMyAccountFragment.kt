@@ -1,5 +1,8 @@
 package com.app.fromindia.fragments.slideMenu
 
+import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,12 +15,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.app.fromindia.R
 import com.app.fromindia.activity.FIHomePageActivity
+import com.app.fromindia.activity.FILoginActivity
 import com.app.fromindia.adapter.FICustomAdapter
 import com.app.fromindia.adapter.FIMyAccountAdapter
 import com.app.fromindia.fragments.FIEditAccountFragment
 import com.app.fromindia.fragments.FIFragmentManager
 import com.app.fromindia.helper.CommonValues
 import com.app.fromindia.helper.CommonValues.*
+import com.app.fromindia.helper.PreferenceHelper
+import com.app.fromindia.helper.PreferenceHelper.loginSuccess
 import com.app.fromindia.model.DynamicMenu
 import kotlinx.android.synthetic.main.activity_main2.*
 
@@ -32,6 +38,8 @@ class FIMyAccountFragment : Fragment(), CommonValues {
     private var mEditAccountIM: AppCompatImageView? = null
 
     private var mFragmentManager: FIFragmentManager? = null
+
+    var mPrefs: SharedPreferences? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,6 +60,8 @@ class FIMyAccountFragment : Fragment(), CommonValues {
 
     private fun classWidgets(aView: View) {
 
+        mPrefs = PreferenceHelper.defaultPreference(activity!!)
+
         mFragmentManager = FIFragmentManager(activity)
 
         mProfileMenuList = aView.findViewById(R.id.profileMenuRV) as RecyclerView
@@ -69,8 +79,22 @@ class FIMyAccountFragment : Fragment(), CommonValues {
         mEditAccountIM!!.setOnClickListener {
             mFragmentManager!!.updateContent(FIEditAccountFragment(), "", null)
         }
+
+
+        mLogOutLAY!!.setOnClickListener {
+
+
+            moveToLoginPage()
+        }
     }
 
+    private fun moveToLoginPage() {
+        mPrefs!!.loginSuccess = false
+        val aIntent = Intent(activity, FILoginActivity::class.java)
+        aIntent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(aIntent)
+        activity!!.finish()
+    }
 
     private fun toLoadDynamicValue() {
 

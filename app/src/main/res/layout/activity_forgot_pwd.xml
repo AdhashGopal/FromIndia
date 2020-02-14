@@ -5,85 +5,136 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="@dimen/padding_10">
 
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_icon" />
-
-    <TextView
-        android:id="@+id/textView2"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Forgot your password?"
-        android:textColor="@color/black"
-        android:textSize="@dimen/dimen_txt_18"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-
-        android:gravity="center"
-        android:text="Enter your email address below and we will send you a link to reset your password"
-        android:textSize="@dimen/dimen_txt_18"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/emailEdtLay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:hint="@string/email"
-        android:padding="@dimen/padding_8"
-        app:errorTextAppearance="@style/ErrorText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/email_edt"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:imeOptions="actionNext"
-            android:singleLine="true" />
+            android:orientation="vertical">
 
-    </com.google.android.material.textfield.TextInputLayout>
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_launcher_icon" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/sendBtn"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/btn_height_55"
-        android:layout_marginTop="@dimen/padding_15"
-        android:background="@drawable/btn_selector"
-        android:padding="@dimen/padding_5dp"
-        android:paddingTop="@dimen/padding_15"
-        android:text="@string/send"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textStyle="normal"
-        app:layout_constraintTop_toBottomOf="@+id/emailEdtLay"></androidx.appcompat.widget.AppCompatButton>
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:text="Forgot your password?"
+                android:textColor="@color/black"
+                android:textSize="@dimen/dimen_txt_18"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+
+                android:gravity="center"
+                android:text="Enter your email address below and we will send you a link to reset your password"
+                android:textSize="@dimen/dimen_txt_18"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/forgetEmailEdtLay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:hint="@string/email"
+
+                android:padding="@dimen/padding_8"
+                app:errorTextAppearance="@style/ErrorText"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView7">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/forgetEmailEDT"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
+                    android:singleLine="true" />
+
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/sendBtn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btn_height_55"
+                android:layout_marginTop="@dimen/padding_15"
+                android:background="@drawable/btn_selector"
+                android:padding="@dimen/padding_5dp"
+                android:paddingTop="@dimen/padding_15"
+                android:text="@string/send"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                app:layout_constraintTop_toBottomOf="@+id/forgetEmailEdtLay"></androidx.appcompat.widget.AppCompatButton>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/sendBtn1"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/btn_height_55"
+                android:layout_marginTop="@dimen/padding_15"
+                android:background="@drawable/btn_selector"
+                android:padding="@dimen/padding_5dp"
+                android:paddingTop="@dimen/padding_15"
+                android:text="@string/send"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="normal"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/emailEdtLay"></androidx.appcompat.widget.AppCompatButton>
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/forgotProgressLAY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/padding_10"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include layout="@layout/inflate_custom_progressbar"></include>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,13 +2,21 @@ package com.app.fromindia.utils
 
 import android.app.Activity
 import android.content.Context
+import android.content.DialogInterface
+import android.content.Intent
 import android.graphics.Typeface
 import android.net.ConnectivityManager
 import android.os.Build
 import android.text.Html
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
+import com.app.fromindia.R
+import com.app.fromindia.helper.CommonValues.APP_NAME
 import com.google.android.material.textfield.TextInputEditText
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
@@ -58,7 +66,6 @@ public object Utils {
         return aJsonParser.parse(aValue) as JsonObject
     }
 
-
     fun setTextValue(aTextView: TextView) {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -66,5 +73,66 @@ public object Utils {
         } else {
             aTextView.text = Html.fromHtml("<h4><span style=\"text-decoration: underline;\"><strong>Features:</strong></span></h4><ol>\r\n <li>Brand: Himalaya</li>\r\n <li>Product Type: Baby Gift(Osl) 1 Box</li>\r\n <li>Box contains: Baby gift box (Osl) 1 of baby products</li>\r\n <li>Package Quantity: 1</li>\r\n <li>Benefits: This baby gift set is a perfect present for baby showers or naming ceremonies</li>\r\n </ol>");
         }
+    }
+
+
+    fun showSuccessToastAlert(aContext: Context, aMsg: String) {
+        Toast.makeText(aContext, aMsg, Toast.LENGTH_SHORT).show()
+    }
+
+    fun showInfoToastAlert(aContext: Context, aMsg: String) {
+        Toast.makeText(aContext, aMsg, Toast.LENGTH_SHORT).show()
+
+    }
+
+    fun showSingleButtonAlert(aContext: Activity, aMsg: String) {
+
+
+        val aDialogBuilder = AlertDialog.Builder(aContext)
+        // set message of alert dialog
+        aDialogBuilder.setMessage(aMsg)
+                // if the dialog is cancelable
+                .setCancelable(false)
+                // positive button text and action
+                .setPositiveButton("Ok", DialogInterface.OnClickListener { dialog, id ->
+                    dialog.dismiss()
+                })
+        // create dialog box
+        val alert = aDialogBuilder.create()
+        // set title for alert dialog box
+        alert.setTitle(APP_NAME)
+//show dialog
+        if (!aContext.isFinishing) {
+            alert.show()
+        }
+    }
+
+    fun showInterentCheckButtonAlert(aContext: Activity, aMsg: String) {
+        val aDialogBuilder = AlertDialog.Builder(aContext)
+        // set message of alert dialog
+        aDialogBuilder.setMessage(aMsg)
+                // if the dialog is cancelable
+                .setCancelable(false)
+                // positive button text and action
+                .setPositiveButton("Goto Settings ", DialogInterface.OnClickListener { dialog, id ->
+                    val aIntent = Intent(android.provider.Settings.ACTION_SETTINGS)
+                    aContext.startActivity(aIntent)
+
+                })
+
+        /*   .setNegativeButton("Cancel", DialogInterface.OnClickListener { dialog, id ->
+               dialog.dismiss()
+           })*/
+        // create dialog box
+        val alert = aDialogBuilder.create()
+        // set title for alert dialog box
+        alert.setTitle(APP_NAME)
+        // show alert dialog
+        alert.show()
+
+        val aNegativeBTN: Button = alert.getButton(DialogInterface.BUTTON_NEGATIVE)
+        val aPositiveBTN: Button = alert.getButton(DialogInterface.BUTTON_POSITIVE)
+        aPositiveBTN.setTextColor(ContextCompat.getColor(aContext, R.color.app_color))
+        aNegativeBTN.setTextColor(ContextCompat.getColor(aContext, R.color.app_secondary_color))
     }
 }

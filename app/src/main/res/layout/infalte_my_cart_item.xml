@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/padding_10"
+    android:layout_marginTop="@dimen/padding_5dp"
     android:background="@drawable/bg_cardview"
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/cartItemMainLAY"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -43,13 +45,29 @@
                     android:padding="5dp"
                     android:text="Sample date to test the length"></androidx.appcompat.widget.AppCompatTextView>
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/productAmtTxt"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="$4.50"
-                    android:textColor="@color/app_secondary_color"></androidx.appcompat.widget.AppCompatTextView>
+                    android:padding="@dimen/padding_5dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/amtSymbolTXT"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="$"
+                        android:textColor="@color/app_secondary_color"></androidx.appcompat.widget.AppCompatTextView>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/productAmtTxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/padding_2"
+
+                        android:layout_toRightOf="@+id/amtSymbolTXT"
+                        android:text="4.50"
+                        android:textColor="@color/app_secondary_color"></androidx.appcompat.widget.AppCompatTextView>
+                </RelativeLayout>
 
             </LinearLayout>
 
@@ -104,5 +122,17 @@
             android:text="Remove"
 
             android:textSize="@dimen/dimen_14sp" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/bottomPriceLAY"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        tools:ignore="MissingConstraints">
+
+        <include layout="@layout/infalte_bottom_price_lay"></include>
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

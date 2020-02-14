@@ -20,7 +20,6 @@ import com.app.fromindia.model.DynamicMenu
 import com.app.fromindia.model.QtyItem
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import kotlinx.android.synthetic.main.activity_login.*
 
 
 class FIMyCartItemAdapter internal constructor(val aStaticMenuList: ArrayList<DynamicMenu>, aContext: FragmentActivity?) : RecyclerView.Adapter<FIMyCartItemAdapter.ViewHolder>(), FIQtyListAdapter.RecyclerViewClickListener {
@@ -41,6 +40,12 @@ class FIMyCartItemAdapter internal constructor(val aStaticMenuList: ArrayList<Dy
 
     private var mPos: Int? = 0
 
+    private var mTotalPrice: String? = "0"
+
+    private var mTotalValue: Int? = 0
+
+    var mAmtValue: Int? = 0
+
     //this method is returning the view for each item in the list
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FIMyCartItemAdapter.ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.infalte_my_cart_item, parent, false)
@@ -49,15 +54,71 @@ class FIMyCartItemAdapter internal constructor(val aStaticMenuList: ArrayList<Dy
 
     //this method is binding the data on the list
     override fun onBindViewHolder(holder: FIMyCartItemAdapter.ViewHolder, position: Int) {
-        // holder.bindItems(aStaticMenuList[position], mFragmentManager, mContext)
-        holder.mQtyTXT!!.text = "Qty :" + mStaticMenuList[position]!!.qty
-        holder.mQtyTXT!!.tag = position
-        holder.mQtyTXT!!.setOnClickListener { showPopUpWindow(holder.mQtyTXT!!, position) }
+        var aItem = mStaticMenuList[position]
+        if (aItem.menuName == "PAYMENT") {
+            holder.aCartItemLAY!!.visibility = View.GONE
+            holder.aPriceLAY!!.visibility = View.VISIBLE
+            holder.mItemCountTxt!!.text = "Price (" + (itemCount - 1).toString() + " Items)"
+            holder.mPriceTXT!!.text = getItemTotalValue()
+            holder.mTaxTXT!!.text = "12"
+            holder.mAmtTXT!!.text = getTotalAmtValue(holder.mTaxTXT!!.text.toString())
+
+        } else {
+            holder.aPriceLAY!!.visibility = View.GONE
+            holder.aCartItemLAY!!.visibility = View.VISIBLE
+            holder.mQtyTXT!!.text = "Qty :" + mStaticMenuList[position]!!.qty
+            holder.mQtyTXT!!.tag = position
+            holder.mProductAmtTxt!!.text = aItem.price
+            holder.mQtyTXT!!.setOnClickListener { showPopUpWindow(holder.mQtyTXT!!, position) }
+            toCalculatePriceValue(aItem!!.qty, aItem!!.price, aItem, position)
+
+        }
+
+    }
+
+    private fun toCalculatePriceValue(qty: String, price: String, aItem: DynamicMenu, position: Int) {
+
+        var aPriceCal: Int? = 0
+
+        if (aItem.checkAddValue == true) {
+
+            aPriceCal = price.toInt()
+
+
+        } else {
+
+            aPriceCal = qty.toInt() * price.toInt()
+
+        }
+
+        mTotalValue = mTotalValue!! + aPriceCal!!;
+
+        Log.e("PRICE", "POS" + position + aPriceCal)
+
+        // mTotalPrice = mTotalValue.toString()
+
+        Log.e("AMTVALUE", "" + mTotalValue)
+    }
+
+    private fun getItemTotalValue(): String {
+        return "" + mTotalValue!!
+    }
+
+    private fun getTotalAmtValue(aTax: String): String {
+
+
+        mAmtValue = getItemTotalValue().toInt() + aTax.toInt()
+
+        return "" + mAmtValue!!
+    }
+
+    public fun getTotalAmtValue(): String {
+        return "" + mAmtValue!!
     }
 
     //this method is giving the size of the list
     override fun getItemCount(): Int {
-        return aStaticMenuList.size
+        return mStaticMenuList.size
     }
 
     init {
@@ -77,10 +138,26 @@ class FIMyCartItemAdapter internal constructor(val aStaticMenuList: ArrayList<Dy
         var aWishListPrizeTXT: TextView? = null
         var aProductIM: ImageView? = null
         var aRootLAY: ConstraintLayout? = null
+        var aPriceLAY: RelativeLayout? = null
+        var aCartItemLAY: RelativeLayout? = null
+        var mProductAmtTxt: AppCompatTextView? = null
+        var mItemCountTxt: AppCompatTextView? = null
+        var mPriceTXT: AppCompatTextView? = null
+        var mTaxTXT: AppCompatTextView? = null
+        var mAmtTXT: AppCompatTextView? = null
 
         init {
             mQtyTXT = itemView.findViewById(R.id.qtyTXT) as TextView
             mSpinnerQty = itemView.findViewById(R.id.qtySpinnerLAY) as AppCompatSpinner
+            aPriceLAY = itemView.findViewById(R.id.bottomPriceLAY) as RelativeLayout
+            aCartItemLAY = itemView.findViewById(R.id.cartItemMainLAY) as RelativeLayout
+            mProductAmtTxt = itemView.findViewById(R.id.productAmtTxt) as AppCompatTextView
+
+            //Price LAY
+            mItemCountTxt = itemView.findViewById(R.id.priceLblTXT) as AppCompatTextView
+            mPriceTXT = itemView.findViewById(R.id.priceTXT) as AppCompatTextView
+            mTaxTXT = itemView.findViewById(R.id.taxTXT) as AppCompatTextView
+            mAmtTXT = itemView.findViewById(R.id.amtTXT) as AppCompatTextView
 
 
         }
@@ -120,6 +197,8 @@ class FIMyCartItemAdapter internal constructor(val aStaticMenuList: ArrayList<Dy
 
     private fun toSetQtyValues(aRec: RecyclerView, aPos: Int) {
 
+        Log.e("VALUEPOS", "" + aPos)
+
         mPos = aPos
 
         aStaticMenu = ArrayList<QtyItem>()
@@ -148,7 +227,6 @@ class FIMyCartItemAdapter internal constructor(val aStaticMenuList: ArrayList<Dy
 
         aStaticMenu.add(aMenu4)
 
-
         aQtyAdapter = FIQtyListAdapter(aStaticMenu, mContext, this!!)
 
         aRec!!.layoutManager = LinearLayoutManager(mContext, RecyclerView.VERTICAL, false)
@@ -170,7 +248,19 @@ class FIMyCartItemAdapter internal constructor(val aStaticMenuList: ArrayList<Dy
             showDialog()
         } else {
 
-            mStaticMenuList[mPos!!].qty = aStaticMenu[position].name.toInt()
+            mStaticMenuList[mPos!!].qty = aStaticMenu[position].name
+
+            mTotalValue = mTotalValue!! - mStaticMenuList[mPos!!].price.toInt()
+
+            mStaticMenuList[mPos!!].price = toCalculateQtyPriceValue(aStaticMenu[position].name, mStaticMenuList[mPos!!].price)
+
+            mStaticMenuList[mPos!!].checkAddValue = true
+
+            //  mTotalValue = 0 //For again calculating after change the QTY
+
+            //mTotalPrice = "0"
+
+            //  mAmtValue = 0
 
             updateList(mStaticMenuList)
         }
@@ -180,7 +270,7 @@ class FIMyCartItemAdapter internal constructor(val aStaticMenuList: ArrayList<Dy
 
     private fun updateList(aItem: ArrayList<DynamicMenu>) {
         mStaticMenuList = aItem
-        notifyDataSetChanged()
+        notifyItemChanged(mPos!!);
     }
 
     private fun showDialog() {
@@ -211,7 +301,15 @@ class FIMyCartItemAdapter internal constructor(val aStaticMenuList: ArrayList<Dy
                 aQtyTL!!.error = mContext!!.getString(R.string.lbl_enter_qty)
 
             } else {
-                mStaticMenuList[mPos!!].qty = aQtyEDT!!.text.toString().toInt()
+                mStaticMenuList[mPos!!].qty = aQtyEDT!!.text.toString()
+
+                // mStaticMenuList[mPos!!].price = toCalculateQtyPriceValue(aQtyEDT!!.text.toString(), mStaticMenuList[mPos!!].price)
+
+                mTotalValue = 0 //For again calculating after change the QTY
+
+                mTotalPrice = "0"
+
+                mAmtValue = 0
 
                 updateList(mStaticMenuList)
 
@@ -222,4 +320,19 @@ class FIMyCartItemAdapter internal constructor(val aStaticMenuList: ArrayList<Dy
         dialog.show()
 
     }
+
+    /**
+     * QTY and PRICE Manipulation for individual product
+     */
+    private fun toCalculateQtyPriceValue(qty: String, price: String): String {
+
+        var aPriceCal: Int? = 0
+
+        aPriceCal = qty.toInt() * price.toInt()
+
+        return "" + aPriceCal
+
+        Log.e("QTY*PRICE VALUE", "" + aPriceCal)
+    }
+
 }

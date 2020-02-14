@@ -8,15 +8,36 @@ public class DynamicMenu {
 
     int MenuImage = 0;
 
-    public int getQty() {
+    public String getQty() {
         return Qty;
     }
 
-    public void setQty(int aQty) {
+    public void setQty(String aQty) {
         this.Qty = aQty;
     }
 
-    int Qty = 1;
+    String Qty = "1";
+
+    public String getPrice() {
+        return Price;
+    }
+
+    public void setPrice(String price) {
+        Price = price;
+    }
+
+    String Price = "";
+
+    public Boolean getCheckAddValue() {
+        return CheckAddValue;
+    }
+
+    public void setCheckAddValue(Boolean checkAddValue) {
+        CheckAddValue = checkAddValue;
+    }
+
+    Boolean CheckAddValue = false;
+
 
     public boolean isCheck() {
         return isCheck;

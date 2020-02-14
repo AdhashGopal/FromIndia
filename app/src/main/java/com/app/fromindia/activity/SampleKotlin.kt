@@ -4,14 +4,20 @@ import android.R
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.app.fromindia.helper.PreferenceHelper
+import com.app.fromindia.helper.PreferenceHelper.userId
+import com.app.fromindia.helper.PreferenceHelper.put
 
 
 class SampleKotlin : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // setContentView(R.layout.constrainlayout_sample)
-    //    setContentView(R.layout.inflate_notification_lay)
+        //    setContentView(R.layout.inflate_notification_lay)
         // dummyItem()
+        val defaultPrefs = PreferenceHelper.defaultPreference(this)
+        // defaultPrefs.userId = 1234
+        PreferenceHelper.defaultPreference(this)
 
     }
 

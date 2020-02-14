@@ -84,23 +84,25 @@
                         android:hint="@string/password"
                         android:padding="@dimen/padding_8"
                         app:errorTextAppearance="@style/ErrorText"
-                        app:passwordToggleEnabled="true">
+                        app:passwordToggleEnabled="true"
+                        app:strikeThrough="true">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/pwd_edt"
+                            android:id="@+id/loginPwd"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+
                             android:imeOptions="actionDone"
                             android:singleLine="true" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/forgotTxt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
                         android:paddingTop="@dimen/padding_5dp"
                         android:paddingRight="@dimen/padding_5dp"
-                        android:id="@+id/forgotTxt"
                         android:text="@string/forgot_password"
                         android:textColor="@color/light_coffee"></androidx.appcompat.widget.AppCompatTextView>
 

@@ -4,9 +4,14 @@ public interface CommonValues {
 
     //String BASE_URL = "https://api.github.com/search/";
 
-    String BASE_URL = "https://sg.fromindia.com/rest/default/V1/";
+    //String BASE_URL = "https://sg.fromindia.com/rest/default/V1/";
 
     // https://devdocs.magento.com/swagger/#/customerAccountManagementV1
+
+
+    String BASE_URL = "https://sg.fromindia.com/";
+
+    String APP_NAME = "From India";
 
     long SPLASH_TIME = 3000;
 
@@ -68,6 +73,10 @@ public interface CommonValues {
 
     int MENU5_ID = 5;
 
+    String STORE_ID_VALUE = "1";
+
+    String IS_SUB_SCRIBED_VALUE = "0";
+
     //For API Handle params
 
     //Login and Reg
@@ -85,6 +94,18 @@ public interface CommonValues {
     String LAST_NAME = "lastname";
 
     String CUSTOMER = "customer";
+
+    String GENDER = "gender";
+
+    String IS_SUBSCRIBED = "is_subscribed";
+
+    String STORE_ID = "store_id";
+
+
+    String PARAMETERS = "parameters";
+
+    String SUCCESS = "success";
+
 
     //...............................................//
 }

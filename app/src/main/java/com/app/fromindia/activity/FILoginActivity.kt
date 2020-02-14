@@ -1,16 +1,24 @@
 package com.app.fromindia.activity
 
 import android.app.Activity
+import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.app.fromindia.R
 import com.app.fromindia.helper.CommonValues.*
+import com.app.fromindia.helper.PreferenceHelper
+
+import com.app.fromindia.model.Customer
+import com.app.fromindia.model.LoginResponse
 import com.app.fromindia.model.User
 import com.app.fromindia.retrofit.APIClient
 import com.app.fromindia.retrofit.APIInterface
@@ -19,24 +27,41 @@ import com.app.fromindia.utils.Utils
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_login.*
 import okhttp3.ResponseBody
+import org.json.JSONArray
+import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import com.app.fromindia.helper.PreferenceHelper.userId
+import com.app.fromindia.helper.PreferenceHelper.put
+import com.app.fromindia.helper.PreferenceHelper.hashKey
+import com.app.fromindia.helper.PreferenceHelper.loginSuccess
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
 class FILoginActivity : AppCompatActivity() {
 
     var mScreenCheck: Boolean = false
     var mActivity: Activity? = null
+    var mPrefs: SharedPreferences? = null
+    var mContext: Context? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         mActivity = this@FILoginActivity
+        mContext = this
+        mPrefs = PreferenceHelper.defaultPreference(this)
         defaultLoadLogin()
         clickListener()
         focusChangeListener()
+
+        ///For Checking the network connection
+        if (Utils.isNetworkAvailable(this)) {
+        } else {
+            Utils.showInterentCheckButtonAlert(mActivity!!, ALERT_FOR_NO_NETWORK_CONNECTION)
+        }
     }
 
 
@@ -44,7 +69,6 @@ class FILoginActivity : AppCompatActivity() {
         loginTxt.setOnClickListener {
             mScreenCheck = true;
             loginPage()
-
         }
         register_txt.setOnClickListener {
             mScreenCheck = false;
@@ -53,34 +77,26 @@ class FILoginActivity : AppCompatActivity() {
         forgotTxt.setOnClickListener {
             mScreenCheck = true;
             moveToForgotPage()
-
         }
-
-
         login_btn.setOnClickListener {
             if (validation()) {
                 pwdLay.error = "";
-                // Toast.makeText(applicationContext, "Heylogin_btn", Toast.LENGTH_SHORT).show();
-
-                //FIHomePageActivity
-
-                /* val intent = Intent(applicationContext, FIHomePageActivity::class.java)
-                 startActivity(intent)
-                 finish()*/
                 if (Utils.isNetworkAvailable(this)) {
                     userLogin(getUserLoginValue())
-
                 } else {
-                    Toast.makeText(applicationContext, "Pls check ur nw", Toast.LENGTH_SHORT).show();
-
+                    Utils.showInterentCheckButtonAlert(mActivity!!, ALERT_FOR_NO_NETWORK_CONNECTION)
                 }
             }
         }
-        pwd_edt.setOnEditorActionListener { v, actionId, event ->
+        loginPwd.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                if (signUpValidation()) {
+                if (validation()) {
                     pwdLay.error = "";
-                    // Toast.makeText(applicationContext, "pwd_edt", Toast.LENGTH_SHORT).show();
+                    if (Utils.isNetworkAvailable(this)) {
+                        userLogin(getUserLoginValue())
+                    } else {
+                        Utils.showInterentCheckButtonAlert(mActivity!!, ALERT_FOR_NO_NETWORK_CONNECTION)
+                    }
                 }
                 true
             } else {
@@ -90,17 +106,19 @@ class FILoginActivity : AppCompatActivity() {
 
         registerBtn.setOnClickListener {
             if (signUpValidation()) {
-
-                callRegistration(getRegisterValues())
-                pwdLay.error = "";
-                Toast.makeText(applicationContext, "Signup", Toast.LENGTH_SHORT).show();
+                signUpConfirmPwdLAY.error = ""
+                if (Utils.isNetworkAvailable(this)) {
+                    callRegistration(getRegisterValues())
+                } else {
+                    Utils.showInfoToastAlert(applicationContext, ALERT_FOR_NO_NETWORK_CONNECTION)
+                }
             }
         }
         signUpConfirmPwdEDT.setOnEditorActionListener { v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 if (signUpValidation()) {
                     pwdLay.error = "";
-                    Toast.makeText(applicationContext, "signUpConfirmPwdEDT", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(applicationContext, "signUpConfirmPwdEDT", Toast.LENGTH_SHORT).show();
                 }
                 true
             } else {
@@ -119,6 +137,13 @@ class FILoginActivity : AppCompatActivity() {
 
     private fun moveToForgotPage() {
         val intent = Intent(applicationContext, FIForgotPasswordActivity::class.java)
+        startActivity(intent)
+        finish()
+    }
+
+    private fun moveToHomePage() {
+        mPrefs!!.loginSuccess = true
+        val intent = Intent(applicationContext, FIHomePageActivity::class.java)
         startActivity(intent)
         finish()
     }
@@ -147,7 +172,7 @@ class FILoginActivity : AppCompatActivity() {
 
         aUser.username = FIHelper.getEditTextValue(email_edt)
 
-        aUser.password = FIHelper.getEditTextValue(pwd_edt)
+        aUser.password = FIHelper.getEditTextValue(loginPwd)
 
         return aUser
 
@@ -174,6 +199,8 @@ class FILoginActivity : AppCompatActivity() {
 
     //ToDo Go to Login page
     private fun loginPage() {
+
+
         mScreenCheck = true;
         emptySignUpError()
         Utils.hideKeyboard(this)
@@ -205,7 +232,7 @@ class FILoginActivity : AppCompatActivity() {
         } else if (!FIHelper.isValidEmail(FIHelper.getEditTextValue(email_edt))) {
             emailEdtLay.error = ALERT_ENTER_VALID_EMAIL
             false;
-        } else if (FIHelper.getEditTextValue(pwd_edt) == "") {
+        } else if (FIHelper.getEditTextValue(loginPwd) == "") {
             emailEdtLay.error = ""
             pwdLay.error = ALERT_ENTER_PWD
             false;
@@ -270,7 +297,7 @@ class FILoginActivity : AppCompatActivity() {
     private fun focusChangeListener() {
         //For Login page
         FIHelper.editErrorEmpty(email_edt, emailEdtLay)
-        FIHelper.editErrorEmpty(pwd_edt, pwdLay)
+        FIHelper.editErrorEmpty(loginPwd, pwdLay)
         //For Registration  page
         FIHelper.editErrorEmpty(firstNameEDT, firstNameLAY)
         FIHelper.editErrorEmpty(lastNameEDT, lastNameLAY)
@@ -287,35 +314,70 @@ class FILoginActivity : AppCompatActivity() {
 
     private fun callRegistration(aRegisterValue: User?) {
 
+        progressLAY.visibility = View.VISIBLE
+
         //...............................................................//
 
+        val aOuterJson = JSONObject()
         val aInnerJson = JSONObject()
-        val aCustomerJson = JSONObject()
-        aCustomerJson.put(EMAIL, aRegisterValue!!.email)
-        aCustomerJson.put(FIRST_NAME, aRegisterValue!!.firstName)
-        aCustomerJson.put(LAST_NAME, aRegisterValue!!.lastName)
-        aInnerJson.put(CUSTOMER, aCustomerJson)
+        aInnerJson.put(FIRST_NAME, aRegisterValue!!.firstName)
+        aInnerJson.put(LAST_NAME, aRegisterValue!!.lastName)
+        aInnerJson.put(EMAIL, aRegisterValue!!.email)
         aInnerJson.put(PASSWORD, aRegisterValue!!.password)
-        Log.e("SIGNUP", aInnerJson.toString())
+        aInnerJson.put(STORE_ID, STORE_ID_VALUE)
+        aInnerJson.put(IS_SUBSCRIBED, IS_SUB_SCRIBED_VALUE) // Static Value
+        aInnerJson.put(GENDER, "1") // Static value set --Right we don't have any option for selecting Gender
+        aOuterJson.put(PARAMETERS, aInnerJson)
+        Log.e("SIGNUP", aOuterJson.toString())
 
         //...............................................................//
 
         var apiServices = APIClient.getClient()!!.create(APIInterface::class.java)
 
-        val aRegCall = apiServices.createUser(Utils.getJsonObjectValue(aInnerJson.toString()))
+        val aRegCall = apiServices.userRegistration(Utils.getJsonObjectValue(aOuterJson.toString()))
 
-        aRegCall.enqueue(object : Callback<ResponseBody?> {
-            override fun onResponse(call: Call<ResponseBody?>, response: Response<ResponseBody?>) {
-                val aConversationBody: ResponseBody? = response.body()
+        aRegCall.enqueue(object : Callback<ArrayList<LoginResponse>?> {
+            override fun onResponse(call: Call<ArrayList<LoginResponse>?>, response: Response<ArrayList<LoginResponse>?>) {
+                val aLoginResponse: ArrayList<LoginResponse>? = response.body()
+
                 Log.e("PRINT PREEFER", call.request().url().toString())
-                Log.e("ErrorBody", response.message())
-                if (response.isSuccessful && aConversationBody != null) {
 
+                Log.e("ErrorBody", response.message())
+
+                if (response.isSuccessful && aLoginResponse != null) {
+
+                    progressLAY.visibility = View.GONE
+
+                    val aCustomerValue: List<Customer>? = aLoginResponse[0]!!.data!!.customer
+
+                    for (k in aCustomerValue!!.indices) {
+
+                        if (aCustomerValue[k].status == SUCCESS) {
+
+                            var aAlertMsg: String? = aCustomerValue[k].message
+
+                            Utils.showSuccessToastAlert(mActivity!!, aAlertMsg!!)
+
+                            moveToHomePage()
+
+                        } else {
+
+                            var aAlertMsg: String? = aCustomerValue[k].message
+
+                            // Utils.showToastAlert(mActivity!!, aAlertMsg!!)
+
+                            Utils.showSingleButtonAlert(mActivity!!, aAlertMsg!!)
+
+                        }
+                    }
                 } else {
                 }
             }
 
-            override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
+            override fun onFailure(call: Call<ArrayList<LoginResponse>??>, t: Throwable) {
+                progressLAY.visibility = View.GONE
+                Utils.showSingleButtonAlert(mActivity!!, t.toString()!!)
+
             }
         })
     }
@@ -324,39 +386,92 @@ class FILoginActivity : AppCompatActivity() {
      * User Login
      */
     private fun userLogin(aRegisterValue: User?) {
-        //To Json Body
+
+
         //...............................................................//
-        val aJsonObject = JSONObject()
-        aJsonObject.put(USERNAME, aRegisterValue!!.username)
-        aJsonObject.put(PASSWORD, aRegisterValue!!.password)
+
+        val aLoginJson = JSONObject()
+
+        val aInnerJson = JSONObject()
+
+        try {
+            aInnerJson.put(EMAIL, aRegisterValue!!.username)
+            aInnerJson.put(PASSWORD, aRegisterValue!!.password)
+            aInnerJson.put(STORE_ID, STORE_ID_VALUE)
+        } catch (e: JSONException) { // TODO Auto-generated catch block
+            e.printStackTrace()
+        }
+
+        aLoginJson.put(PARAMETERS, aInnerJson)
+
+        Log.e("PostReq_Login", aLoginJson.toString())
+
         //...............................................................//
 
         progressLAY.visibility = View.VISIBLE
 
-        Log.e("LOGIN JSON PARAM", aJsonObject.toString())
         var apiServices = APIClient.getClient()!!.create(APIInterface::class.java)
-        val aRegCall = apiServices.userLogin(Utils.getJsonObjectValue(aJsonObject.toString()))
-        aRegCall.enqueue(object : Callback<ResponseBody?> {
-            override fun onResponse(call: Call<ResponseBody?>, response: Response<ResponseBody?>) {
-                val aConversationBody: ResponseBody? = response.body()
+
+        val aRegCall = apiServices.userLogin(Utils.getJsonObjectValue(aLoginJson.toString()))
+
+        aRegCall.enqueue(object : Callback<ArrayList<LoginResponse>?> {
+
+            override fun onResponse(call: Call<ArrayList<LoginResponse>?>, response: Response<ArrayList<LoginResponse>?>) {
+
+                val aLoginResponse: ArrayList<LoginResponse>? = response.body()
 
                 val res = response.body().toString()
 
                 Log.e("PRINT PREEFER", call.request().url().toString())
+
                 Log.e("ErrorBody", response.message())
-                if (response.isSuccessful && aConversationBody != null) {
+
+                progressLAY.visibility = View.GONE
+
+                if (response.isSuccessful && aLoginResponse != null) {
+
+                    val aCustomerValue: List<Customer>? = aLoginResponse[0]!!.data!!.customer
+
+                    for (k in aCustomerValue!!.indices) {
+
+                        //Storing Customer ID and Hash key
+
+                        mPrefs!!.userId = aCustomerValue[k].customerId
+
+                        mPrefs!!.hashKey = aCustomerValue[k].hash
+
+                        var aAlertMsg: String? = aCustomerValue[k].message
+
+
+                        if (aCustomerValue[k].status == SUCCESS) {
+
+                            moveToHomePage()
+
+                        } else {
+
+                            //    var aAlertMsg: String? = aCustomerValue[k].message
+
+                            Utils.showSingleButtonAlert(mActivity!!, aAlertMsg!!)
+                        }
+                    }
 
                     Log.e("responseString", Gson().toJson(res))
 
-                    progressLAY.visibility = View.GONE
 
                 } else {
                 }
             }
 
-            override fun onFailure(call: Call<ResponseBody?>, t: Throwable) {
+            override fun onFailure(call: Call<ArrayList<LoginResponse>?>, t: Throwable) {
+                Utils.showSingleButtonAlert(mActivity!!, t.toString()!!)
+                progressLAY.visibility = View.GONE
+
+
             }
         })
 
+    }
+
+    fun showAlert() {
     }
 }
