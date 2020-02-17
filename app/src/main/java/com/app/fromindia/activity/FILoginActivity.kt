@@ -37,6 +37,7 @@ import com.app.fromindia.helper.PreferenceHelper.userId
 import com.app.fromindia.helper.PreferenceHelper.put
 import com.app.fromindia.helper.PreferenceHelper.hashKey
 import com.app.fromindia.helper.PreferenceHelper.loginSuccess
+import com.app.fromindia.model.SlideMenu.MenuList
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 
@@ -386,8 +387,6 @@ class FILoginActivity : AppCompatActivity() {
      * User Login
      */
     private fun userLogin(aRegisterValue: User?) {
-
-
         //...............................................................//
 
         val aLoginJson = JSONObject()
@@ -472,6 +471,87 @@ class FILoginActivity : AppCompatActivity() {
 
     }
 
-    fun showAlert() {
+    private fun slideMenuItem(aRegisterValue: User?) {
+        //...............................................................//
+
+        val aLoginJson = JSONObject()
+
+        val aInnerJson = JSONObject()
+
+        try {
+            aInnerJson.put(STORE_THEME, STORE_THEME_VALUE)
+            aInnerJson.put(STORE_ID, STORE_ID_VALUE)
+        } catch (e: JSONException) { // TODO Auto-generated catch block
+            e.printStackTrace()
+        }
+
+        aLoginJson.put(PARAMETERS, aInnerJson)
+
+        Log.e("PostReq_Login", aLoginJson.toString())
+
+        //...............................................................//
+
+        progressLAY.visibility = View.VISIBLE
+
+        var apiServices = APIClient.getClient()!!.create(APIInterface::class.java)
+
+        val aRegCall = apiServices.getMenuListItem(Utils.getJsonObjectValue(aLoginJson.toString()))
+
+        aRegCall.enqueue(object : Callback<ArrayList<MenuList>?> {
+
+            override fun onResponse(call: Call<ArrayList<MenuList>?>, response: Response<ArrayList<MenuList>?>) {
+
+                val aLoginResponse: ArrayList<MenuList>? = response.body()
+
+                val res = response.body().toString()
+
+                Log.e("PRINT PREEFER", call.request().url().toString())
+
+                Log.e("ErrorBody", response.message())
+
+                progressLAY.visibility = View.GONE
+
+                if (response.isSuccessful && aLoginResponse != null) {
+
+                    val aCustomerValue: List<Customer>? = aLoginResponse[0]!!.data!!.customer
+
+                    for (k in aCustomerValue!!.indices) {
+
+                        //Storing Customer ID and Hash key
+
+                        mPrefs!!.userId = aCustomerValue[k].customerId
+
+                        mPrefs!!.hashKey = aCustomerValue[k].hash
+
+                        var aAlertMsg: String? = aCustomerValue[k].message
+
+
+                        if (aCustomerValue[k].status == SUCCESS) {
+
+                            moveToHomePage()
+
+                        } else {
+
+                            //    var aAlertMsg: String? = aCustomerValue[k].message
+
+                            Utils.showSingleButtonAlert(mActivity!!, aAlertMsg!!)
+                        }
+                    }
+
+                    Log.e("responseString", Gson().toJson(res))
+
+
+                } else {
+                }
+            }
+
+            override fun onFailure(call: Call<ArrayList<MenuList>?>, t: Throwable) {
+                Utils.showSingleButtonAlert(mActivity!!, t.toString()!!)
+                progressLAY.visibility = View.GONE
+
+
+            }
+        })
+
     }
 }

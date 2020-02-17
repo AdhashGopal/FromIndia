@@ -2,6 +2,7 @@ package com.app.fromindia.retrofit;
 
 import com.app.fromindia.model.LoginResponse;
 import com.app.fromindia.model.SignUpResp;
+import com.app.fromindia.model.SlideMenu.MenuList;
 import com.app.fromindia.model.User;
 import com.google.gson.JsonObject;
 
@@ -23,6 +24,9 @@ public interface APIInterface {
 
     @POST("rest/V1/mobiconnect/customer/forgotpassword")
     Call<ArrayList<LoginResponse>> userForgotPassword(@Body JsonObject object);
+
+    @POST("rest/V1/mobiconnectadvcart/category/getallcategories/")
+    Call<ArrayList<MenuList>> getMenuListItem(@Body JsonObject object);
 
 
 }

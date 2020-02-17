@@ -84,14 +84,12 @@
                         android:hint="@string/password"
                         android:padding="@dimen/padding_8"
                         app:errorTextAppearance="@style/ErrorText"
-                        app:passwordToggleEnabled="true"
-                        app:strikeThrough="true">
+                        app:passwordToggleEnabled="true">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/loginPwd"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-
                             android:imeOptions="actionDone"
                             android:singleLine="true" />
                     </com.google.android.material.textfield.TextInputLayout>

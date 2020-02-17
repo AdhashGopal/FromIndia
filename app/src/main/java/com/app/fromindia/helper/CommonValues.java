@@ -75,6 +75,9 @@ public interface CommonValues {
 
     String STORE_ID_VALUE = "1";
 
+    String STORE_THEME_VALUE = "5";
+
+
     String IS_SUB_SCRIBED_VALUE = "0";
 
     //For API Handle params
@@ -100,6 +103,8 @@ public interface CommonValues {
     String IS_SUBSCRIBED = "is_subscribed";
 
     String STORE_ID = "store_id";
+
+    String STORE_THEME = "theme";
 
 
     String PARAMETERS = "parameters";
